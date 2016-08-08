@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape >
+            <corners android:radius="@dimen/radiusButton"/>
+            <solid android:color="@color/colorHeader" />
+
+            <stroke android:color="@color/colorBorderButton" android:width="1px"/>
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorHeader">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="@dimen/textSeventDp"
+            android:layout_marginStart="@dimen/textSeventDp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/background_button_main2">
+
+            <ImageView
+                android:id="@+id/imvDrawerOpenPoint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@drawable/nav_menu" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="@string/Points"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <FrameLayout
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="@dimen/textSeventDp"
+            android:layout_marginLeft="@dimen/textSeventDp"
+            android:layout_marginStart="@dimen/textSeventDp"
+            android:layout_marginTop="@dimen/textSeventDp"
+            android:layout_weight="0.7"
+            android:background="@drawable/background_button_main2">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@drawable/nav_message" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_menu_item_notification" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/three"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:background="#CECECE"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/background_points_total">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/textSeventDp"
+                        android:layout_marginStart="@dimen/textSeventDp"
+                        android:layout_weight="0.5"
+                        android:padding="@dimen/textSeventDp"
+                        android:src="@drawable/ic_earned_point" />
+
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="@string/pointTotalYou"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/point"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_buys_point"
+                    android:text="@string/BuysPoint"
+                    android:textColor="@android:color/white"
+
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_bg_point" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="7">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.8"
+                        android:padding="10dp">
+
+                        <ImageView
+
+                            android:id="@+id/imvLookAtMe"
+                            style="@style/imageViewPoint"
+                            android:src="@drawable/ic_lookatme" />
+
+                        <TextView
+                            android:id="@+id/txtTitle"
+                            style="@style/textViewPoint"
+                            android:layout_alignLeft="@+id/textView"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignStart="@+id/textView"
+                            android:text="@string/auction" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtTitle"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@id/imvLookAtMe"
+                            android:layout_toRightOf="@id/imvLookAtMe"
+                            android:text="@string/auction1" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="@android:color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.8"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imvLookAtMe1"
+                            style="@style/imageViewPoint"
+                            android:src="@drawable/ic_whocheckmeout" />
+
+                        <TextView
+                            android:id="@+id/txtTitle1"
+                            style="@style/textViewPoint"
+                            android:layout_marginLeft="@dimen/textSeventDp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe1"
+                            android:layout_toRightOf="@+id/imvLookAtMe1"
+                            android:text="@string/whoChecked" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtTitle1"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe1"
+                            android:layout_toRightOf="@id/imvLookAtMe1"
+                            android:text="@string/whoChecked2" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="@android:color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.8"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imvLookAtMe2"
+                            style="@style/imageViewPoint"
+                            android:src="@drawable/ic_winkboom" />
+
+                        <TextView
+                            android:id="@+id/txtTitle2"
+                            style="@style/textViewPoint"
+                            android:layout_marginLeft="@dimen/textSeventDp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe2"
+                            android:layout_toRightOf="@+id/imvLookAtMe2"
+                            android:text="@string/winkBoom" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtTitle2"
+                            android:layout_marginLeft="@dimen/textSeventDp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe2"
+                            android:layout_toRightOf="@id/imvLookAtMe2"
+                            android:text="@string/sendAMessages" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="@android:color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.8"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imvLookAtMe3"
+                            style="@style/imageViewPoint"
+                            android:src="@drawable/ic_whofavme" />
+
+                        <TextView
+                            android:id="@+id/txtTitle3"
+                            style="@style/textViewPoint"
+                            android:layout_marginLeft="@dimen/textSeventDp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe3"
+                            android:layout_toRightOf="@+id/imvLookAtMe3"
+                            android:text="@string/whoFariusme" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtTitle3"
+                            android:layout_marginLeft="@dimen/textSeventDp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe3"
+                            android:layout_toRightOf="@id/imvLookAtMe3"
+                            android:text="@string/whoFariusme2" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="@android:color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp">
+
+                        <ImageView
+                            android:id="@+id/imvLookAtMe4"
+                            style="@style/imageViewPoint"
+                            android:src="@drawable/ic_gift_point" />
+
+                        <TextView
+                            android:id="@+id/txtTitle4"
+                            style="@style/textViewPoint"
+                            android:layout_marginLeft="@dimen/textSeventDp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe4"
+                            android:layout_toRightOf="@+id/imvLookAtMe4"
+                            android:text="@string/sendGift" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtTitle4"
+                            android:layout_marginLeft="@dimen/textSeventDp"
+                            android:layout_marginStart="@dimen/textSeventDp"
+                            android:layout_toEndOf="@id/imvLookAtMe4"
+                            android:layout_toRightOf="@id/imvLookAtMe4"
+                            android:text="@string/sendGift2" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="@android:color/black" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
