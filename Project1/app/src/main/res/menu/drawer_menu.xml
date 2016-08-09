@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_recenReport"
+            android:icon="@drawable/my_profile_btn_my_favorites"
+            android:title="@string/recentReport" />
+    </group>
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/menu_searchFriend"
+            android:icon="@drawable/ic_menu_myprofile"
+            android:title="@string/searchFriends" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_checkTimeLine"
+            android:icon="@drawable/ic_menu_buzz"
+            android:title="@string/checkTimeLine" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_auticion"
+            android:icon="@drawable/ic_menu_lookatme"
+            android:title="@string/auction" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_shakeToChat"
+            android:icon="@drawable/ic_menu_shake"
+            android:title="@string/shakeToChat" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_profile"
+            android:icon="@drawable/ic_menu_myprofile"
+            android:title="@string/profile" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_myFriend"
+            android:icon="@drawable/ic_menu_connections"
+            android:title="@string/myFriends" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_chat"
+            android:icon="@drawable/search_setting_btn_city_checked"
+            android:title="@string/chatMessages" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_notification"
+            android:icon="@drawable/ic_menu_notification"
+            android:title="@string/notification" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_point"
+            android:icon="@drawable/ic_menu_point"
+            android:title="@string/point" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_setting"
+            android:icon="@drawable/ic_menu_setting"
+            android:title="@string/setting" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_freepage"
+            android:icon="@drawable/ic_menu_item_offline"
+            android:title="@string/freePage" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_javaScrip"
+            android:icon="@drawable/ic_menu_item_offline"
+            android:title="@string/javaScripInterfacr" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_japanes"
+            android:icon="@drawable/ic_menu_item_offline"
+            android:title="@string/javaScripInterfacr" />
+    </group>
+</menu>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="15dp"
+    android:background="@drawable/background_layout_demo"
+    android:layout_height="270dp">
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/default_avata"
+            android:layout_width="wrap_content"
+            android:id="@+id/imvStatus"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:inputType="text"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/imvStatus"
+            android:layout_toEndOf="@+id/imvStatus"
+            android:id="@+id/editText" />
+        <ImageView
+            android:id="@+id/imvClock"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_fragment_share_buzz_time"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imvStatus"
+            android:layout_alignLeft="@+id/editText"
+            android:layout_alignStart="@+id/editText" />
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:text="@string/noOs"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imvClock"
+            android:layout_alignRight="@+id/imvPhoto"
+            android:layout_alignEnd="@+id/imvPhoto" />
+        <ImageView
+            android:paddingBottom="6dp"
+            android:id="@+id/imvLocation"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_fragment_share_buzz_location"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText"
+            android:layout_toRightOf="@+id/txtTime"
+            android:layout_toEndOf="@+id/txtTime" />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:text="@string/here"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText"
+            android:layout_toRightOf="@+id/txtTime"
+            android:layout_toEndOf="@+id/imvLocation" />
+        <View
+            android:layout_marginTop="2dp"
+            android:id="@+id/viewLine"
+            android:layout_below="@+id/imvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000000"
+            />
+        <ImageView
+            android:layout_margin="7dp"
+            android:id="@+id/imvPhoto"
+            android:layout_below="@id/viewLine"
+           android:layout_width="100dp"
+            android:src="@drawable/fragment_share_buzz_capture"
+            android:layout_height="120dp" />
+        <EditText
+            android:gravity="top"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/viewLine"
+            android:layout_toRightOf="@id/imvPhoto"
+            android:layout_toEndOf="@+id/imvPhoto"
+            android:background="@android:color/transparent"
+            android:hint="@string/shareSomething"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+        <LinearLayout
+          android:background="@drawable/background_sharing"
+            android:layout_width="match_parent"
+           android:layout_height="120dp"
+            android:layout_below="@id/imvPhoto">
+            <TextView
+                android:textSize="25sp"
+                android:id="@+id/txtSharingOff"
+                android:textColor="@android:color/black"
+                android:gravity="end|center"
+                android:text="@string/Sharing"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:layout_margin="15dp"
+                android:background="@drawable/ic_fragment_share_buzz_face_none"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_toRightOf="@+id/txtSharingOff"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </RelativeLayout>
