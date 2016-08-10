@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorHeader"
+        android:gravity="center">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1.5"
+            android:background="@drawable/background_button_main2">
+
+            <ImageView
+                android:id="@+id/imvOpenDrawer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="7dp"
+                android:src="@drawable/nav_menu" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/txtContentSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:text="@string/setting"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textBm"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSaveSetting"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:background="@drawable/background_button_main2"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textHm"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/chatAndNotifice"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_layout_setting_one"
+                android:orientation="vertical"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
+                        android:text="@string/sound"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/textHm"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/ckb_sound"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="3dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.3">
+
+                    <TextView
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="5"
+                        android:text="@string/vibration" />
+
+                    <CheckBox
+                        android:id="@+id/ckb_vibration"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="3dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:id="@+id/lnl_notificationRecent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.3">
+
+                    <TextView
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/notification" />
+
+                    <ImageView
+                        android:id="@+id/imvNotificationSetting"
+                        style="@style/styleImageSetting" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:text="@string/account"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="2"
+                android:background="@drawable/background_layout_setting_one"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lnl_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/distance" />
+
+                    <TextView
+                        android:id="@+id/txt_set_report"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center" />
+
+                    <ImageView style="@style/styleImageSetting" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:id="@+id/lnl_change_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/changePassword" />
+
+                    <ImageView
+                        style="@style/styleImageSetting"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/blockedUsers" />
+
+                    <ImageView
+                        style="@style/styleImageSetting"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:id="@+id/lnlDeactivateAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/deActivateAccount" />
+
+                    <ImageView
+                        style="@style/styleImageSetting"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/rateAndg" />
+
+                    <ImageView
+                        style="@style/styleImageSetting"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/terms_of_service"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/background_layout_setting_one"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lnl_term_of_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/terms_of_service" />
+
+                    <ImageView
+                        style="@style/styleImageSetting"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/privacyPolici" />
+
+                    <ImageView
+                        style="@style/styleImageSetting"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        style="@style/textViewStyleSetting"
+                        android:layout_weight="15"
+                        android:text="@string/terms_of_users" />
+
+                    <ImageView
+                        style="@style/styleImageSetting"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="7"
+                        android:gravity="center"
+                        android:text="@string/versions" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

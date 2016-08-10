@@ -1,0 +1,32 @@
+<FrameLayout
+    android:layout_marginRight="3dp"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/imv_four_avatar_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/default_male_bg"/>
+
+    <ImageView
+
+        android:layout_marginLeft="10dp"
+        android:id="@+id/imv_four_point_1"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:src="@drawable/ic_status_online_grid_view"/>
+
+    <TextView
+        android:id="@+id/txt_four_au"
+
+        android:textSize="10sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/background_indiacator"
+        android:text="aaaa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"/>
+</FrameLayout>

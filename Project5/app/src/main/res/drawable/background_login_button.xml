@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <corners android:radius="@dimen/radiusButton"/>
+            <solid android:color="@color/colorButton" />
+
+            <gradient android:startColor="#D8D8D8"
+                android:endColor="#f5f3f3"
+                android:angle="90"
+                />
+            <stroke android:color="@color/colorBorderButton" android:width="1px"/>
+        </shape>
+    </item>
+    <item>
+        <selector>
+            <item android:state_pressed="true" android:drawable="@color/colorBackground"/>
+        </selector>
+    </item>
+</layer-list>

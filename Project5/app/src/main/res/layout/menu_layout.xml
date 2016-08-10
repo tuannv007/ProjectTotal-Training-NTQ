@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:weightSum="17">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_menu_recent_report" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/recentReport"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+
+        <View style="@style/lineDashRecenReport" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@color/colorBackground" />
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:id="@+id/lnl_search_setting"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.1">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_meetpeople" />
+
+            <TextView
+                style="@style/textViewRecenReport"
+                android:text="@string/searchFriends" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_buzz" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/checkTimeLine" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:id="@+id/lnl_aution"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_lookatme" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/auction" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_shake" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/shakeToChat" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@color/colorBackground"
+            android:paddingLeft="15dp"
+            android:text="@string/q"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:id="@+id/lnl_profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_myprofile" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/profile" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_connections" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/myFriends" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:id="@+id/lnl_chat"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_mychat" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/chats" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/three"
+                android:textColor="@android:color/holo_green_dark" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:id="@+id/lnl_notification"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_notification" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/notifications" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/fivethree"
+                android:textColor="@android:color/holo_green_dark" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:id="@+id/lnl_point"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_point" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/Points" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/fivethree"
+                android:textColor="@android:color/holo_green_dark" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:id="@+id/lnl_setting"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_setting" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/setting" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorBackground"
+            android:paddingLeft="15dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:id="@+id/lnl_give_gift"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_item_offline" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/giveGift" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_item_offline" />
+
+            <TextView
+
+                style="@style/textViewRecenReport"
+                android:text="@string/javaScripInterfacr" />
+        </LinearLayout>
+
+        <View style="@style/lineDashRecenReport" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:padding="5dp">
+
+            <ImageView
+                style="@style/imageViewRecenreport"
+                android:src="@drawable/ic_menu_item_offline" />
+
+            <TextView
+                style="@style/textViewRecenReport"
+                android:text="@string/chinaLanguage" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
