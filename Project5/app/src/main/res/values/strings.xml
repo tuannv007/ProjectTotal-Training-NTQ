@@ -133,4 +133,9 @@
     <string name="confgurationNotifice">Congratulation, you have reached to 1 st position of Auction</string>
     <string name="s19">19s</string>
     <string name="giveGift">Give Gift</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="birthday">BirthDay</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

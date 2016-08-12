@@ -102,12 +102,6 @@ public abstract class MyActivity extends AppCompatActivity {
         TextView mTitleTextView = (TextView) view.findViewById(R.id.txtContentHeader);
         Toolbar parent = (Toolbar) view.getParent();
         parent.setContentInsetsAbsolute(0, 0);
-        mTitleTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         mTitleTextView.setText(contentText);
     }
     @Override

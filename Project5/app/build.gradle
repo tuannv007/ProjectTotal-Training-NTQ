@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+        useLibrary 'org.apache.http.legacy'
 }
 repositories {
     maven { url "https://jitpack.io" }
@@ -28,4 +29,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:+'
     compile 'com.android.support:design:23.2.0'
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
 }

@@ -23,4 +23,5 @@ public class NameFragment {
     public static String nofiticationProject2="notificatioProject2";
     public static String giveGiftFragment="GiveGiftFragment";
     public static String allFragment="Allfragment";
+    public static String signupFragment="signupFragment";
 }

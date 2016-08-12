@@ -34,6 +34,8 @@ public class WellcomeFragment extends BaseFragment implements View.OnClickListen
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vpg_image);
         CirclePageIndicator indicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
         Button btnLogin = (Button) view.findViewById(R.id.btn_login_wellcome);
+        Button btnSignUp = (Button) view.findViewById(R.id.btn_sign_up);
+        btnSignUp.setOnClickListener(this);
         WellcomeAdapter wellcomeAdapter = new WellcomeAdapter(getActivity(), image);
         viewPager.setAdapter(wellcomeAdapter);
         indicator.setViewPager(viewPager);
@@ -51,6 +53,9 @@ public class WellcomeFragment extends BaseFragment implements View.OnClickListen
         switch (v.getId()) {
             case R.id.btn_login_wellcome:
                 changeFragment(new LoginFragment(), NameFragment.loginFragment);
+                break;
+            case R.id.btn_sign_up:
+                changeFragment(new SignUpFragment(),NameFragment.signupFragment);
                 break;
         }
     }

@@ -185,7 +185,11 @@ public class MainActivity extends MyActivity implements View.OnClickListener {
             getSupportActionBar().show();
         setUpLoginActionbar("Login");
     }
-
+    public void showActionbarSignUp() {
+        if (getSupportActionBar() != null)
+            getSupportActionBar().show();
+        setUpLoginActionbar("Sign Up");
+    }
     private void closeNavigation() {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
