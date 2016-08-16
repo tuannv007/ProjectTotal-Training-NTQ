@@ -20,29 +20,22 @@ import com.example.admin.project1final.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.math.BigInteger;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Locale;
 
-import key.api.KeyErrorFragment;
+import key.api.BaseApiFragment;
+import key.api.KeyParam;
+import key.name.fragment.tag.NameFragment;
 import user.User;
 
 /**
  * Created by admin on 8/10/2016.
  */
-public class SignUpFragment extends KeyErrorFragment implements View.OnClickListener {
+public class SignUpFragment extends BaseApiFragment implements View.OnClickListener {
     protected EditText edtEmail, edtPassword, edtUsername, edtBirthDay;
-    private User users;
+    private User user;
     private SimpleDateFormat dateFormatter;
     private Calendar newCalendar;
     private DatePickerDialog fromDatePickerDialog;
@@ -71,7 +64,7 @@ public class SignUpFragment extends KeyErrorFragment implements View.OnClickList
         configDialog();
         btnRegister.setOnClickListener(this);
         edtBirthDay.setOnClickListener(this);
-        ((MainActivity)getActivity()).showActionbarSignUp();
+        ((MainActivity) getActivity()).showActionbarSignUp();
     }
 
     private void configDialog() {
@@ -95,12 +88,12 @@ public class SignUpFragment extends KeyErrorFragment implements View.OnClickList
         String birthday = edtBirthDay.getText().toString();
         String birthDayConfig = birthday.replace("-", "");
 
-        users = new User();
-        users.setEmail(email);
-        users.setPassword(password);
-        users.setUsername(username);
-        users.setBirthday(birthDayConfig);
-        users.setGender(getGender());
+        user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUsername(username);
+        user.setBirthday(birthDayConfig);
+        user.setGender(getGender());
         if (email.isEmpty()) {
             Toast.makeText(getActivity(), "Email not empty", Toast.LENGTH_LONG).show();
         } else if (password.isEmpty()) {
@@ -108,7 +101,7 @@ public class SignUpFragment extends KeyErrorFragment implements View.OnClickList
         } else if (email.isEmpty() && password.isEmpty()) {
             Toast.makeText(getActivity(), "Email and Password not empty", Toast.LENGTH_LONG).show();
         } else {
-            new RegisterAsyncTask().execute("http://14.160.24.93:9119");
+            new RegisterAsyncTask().execute(KeyParam.mUrl);
         }
 
     }
@@ -122,23 +115,24 @@ public class SignUpFragment extends KeyErrorFragment implements View.OnClickList
 
         private String s;
 
+
         @Override
         protected String doInBackground(String... params) {
             final JSONObject object = new JSONObject();
             try {
-                object.put("api", "register_version_2");
-                object.put("user_name", users.getUsername());
-                object.put("email", users.getEmail());
-                object.put("pwd", md5(users.getPassword()));
-                object.put("bir", users.getBirthday());
-                object.put("inters_in", 0);
-                object.put("device_id", "android");
-                object.put("notify_token", "sjdks");
-                object.put("device_type", 0);
-                object.put("login_time", "20120223123412");
-                object.put("ivt_code", "gshd");
-                object.put("original_pwd", users.getPassword());
-                object.put("gender", users.getGender());
+                object.put(KeyParam.KeyApi, "register_version_2");
+                object.put(KeyParam.KeyApiUserName, user.getUsername());
+                object.put(KeyParam.KeyApiEmail, user.getEmail());
+                object.put(KeyParam.KeyApiPassword, md5(user.getPassword()));
+                object.put(KeyParam.KeyApiBirthDay, user.getBirthday());
+                object.put(KeyParam.KeyApiInterIn, 0);
+                object.put(KeyParam.KeyApiDeviceID, "android");
+                object.put(KeyParam.KeyApiNotifyToken, "sjdks");
+                object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
+                object.put(KeyParam.KeyApiLoginTime, "20120223123412");
+                object.put(KeyParam.KeyApiIvtCode, "gshd");
+                object.put(KeyParam.KeyApiOriginalPass, user.getPassword());
+                object.put(KeyParam.KeyApiGender, user.getGender());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -150,76 +144,10 @@ public class SignUpFragment extends KeyErrorFragment implements View.OnClickList
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            showError(s);
+            showError(s, new LoginFragment(), NameFragment.loginFragment);
         }
 
 
-    }
-
-
-    private String md5(String s) {
-        try {
-            MessageDigest m = MessageDigest.getInstance("MD5");
-            m.update(s.getBytes(), 0, s.length());
-            BigInteger i = new BigInteger(1, m.digest());
-            return String.format("%1$032x", i);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private String sendRequest(String url, String inputString, int timeoutConnect, int timeoutRead) {
-        String outputData;
-        StringBuilder postData = new StringBuilder();
-        URL u;
-        HttpURLConnection conn = null;
-        OutputStream out;
-        InputStreamReader isr;
-        BufferedReader buf;
-        try {
-            u = new URL(url);
-
-            //open connection
-            conn = (HttpURLConnection) u.openConnection();
-            conn.setConnectTimeout(timeoutConnect);
-            conn.setReadTimeout(timeoutRead);
-
-
-            // post method
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            // data to send
-            postData.append(inputString);
-            String encodedData = postData.toString();
-            // send data by byte
-            conn.setRequestProperty("Content-Language", "en-US");
-            conn.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
-
-            conn.setRequestProperty("Content-Length",
-                    Integer.toString(encodedData.getBytes().length));
-            byte[] postDataByte = postData.toString().getBytes("UTF-8");
-            out = conn.getOutputStream();
-            out.write(postDataByte);
-
-            // get data from server
-            isr = new InputStreamReader(conn.getInputStream(), "UTF-8");
-            buf = new BufferedReader(isr);
-            // write
-            outputData = buf.readLine();
-            if (out != null)
-                out.close();
-            isr.close();
-            buf.close();
-            return outputData;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (conn != null)
-                conn.disconnect();
-        }
-        return "";
     }
 
     @Override

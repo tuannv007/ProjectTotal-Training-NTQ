@@ -6,9 +6,81 @@ import java.util.Date;
  * Created by admin on 8/10/2016.
  */
 public class User {
-    private String email,password,username,notify_token;
+    private String email,frd_id,ava_id,last_msg,is_own,sent_time,unread_num,longs,lat,distance,msg_type;
+    private String password;
+    private String username;
+    private String notify_token;
+    private int avatar;
     private String birthday;
     private int gender;
+    private boolean isOnline;
+
+    public User() {
+    }
+
+    public User(String frd_id, String ava_id, String last_msg, String is_own, String sent_time, String unread_num, String longs, String lat, String distance, String msg_type, String username, int gender, boolean isOnline) {
+        this.frd_id = frd_id;
+        this.ava_id = ava_id;
+        this.last_msg = last_msg;
+        this.is_own = is_own;
+        this.sent_time = sent_time;
+        this.unread_num = unread_num;
+        this.longs = longs;
+        this.lat = lat;
+        this.distance = distance;
+        this.msg_type = msg_type;
+        this.username = username;
+        this.gender = gender;
+        this.isOnline = isOnline;
+    }
+
+    public String getFrd_id() {
+        return frd_id;
+    }
+
+    public String getAva_id() {
+        return ava_id;
+    }
+
+    public String getLast_msg() {
+        return last_msg;
+    }
+
+    public String getIs_own() {
+        return is_own;
+    }
+
+    public String getSent_time() {
+        return sent_time;
+    }
+
+    public String getUnread_num() {
+        return unread_num;
+    }
+
+    public String getLongs() {
+        return longs;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public String getMsg_type() {
+        return msg_type;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
 
     public String getUsername() {
         return username;
@@ -18,7 +90,13 @@ public class User {
         this.username = username;
 
     }
+    public int getAvatar() {
+        return avatar;
+    }
 
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
+    }
     public String getNotify_token() {
         return notify_token;
     }

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.admin.project1final.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -23,11 +24,11 @@ import toantk.entities.User;
 public class ChatContentAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<ItemSearchFriendListview> arrayList = new ArrayList<>();
+    private ArrayList<user.User> arrayList = new ArrayList<>();
     public ViewHolderChatContent viewHolder;
     public boolean isDelete = false;
 
-    public ChatContentAdapter(Context context, ArrayList<ItemSearchFriendListview> objects) {
+    public ChatContentAdapter(Context context, ArrayList<user.User> objects) {
         this.mContext = context;
         arrayList = objects;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -74,8 +75,8 @@ public class ChatContentAdapter extends BaseAdapter {
 
 
         }
-        ItemSearchFriendListview positionItem = arrayList.get(position);
-        viewHolder.imvAvatar.setImageResource(positionItem.getAvata());
+        user.User positionItem = arrayList.get(position);
+        Picasso.with(mContext).load(arrayList.get(position).getAva_id()).into(viewHolder.imvAvatar);
         viewHolder.imvTime.setImageResource(R.drawable.ic_menu_item_time_range);
         viewHolder.imvLocation.setImageResource(R.drawable.ic_menu_item_distance);
         if (positionItem.isOnline()) {
@@ -83,11 +84,11 @@ public class ChatContentAdapter extends BaseAdapter {
         } else {
             viewHolder.imvStatus.setImageResource(R.drawable.ic_menu_item_offline);
         }
-        viewHolder.txtTime.setText(arrayList.get(position).getTxtTime());
-        viewHolder.txtName.setText(arrayList.get(position).getName());
-        viewHolder.txtLocation.setText(arrayList.get(position).getTxtContentLocation());
-        viewHolder.txtContentSend.setText(arrayList.get(position).getTxtContentSend());
-        viewHolder.txtContentReciver.setText(arrayList.get(position).getTxtContentRecever());
+        viewHolder.txtTime.setText(arrayList.get(position).getSent_time());
+        viewHolder.txtName.setText(arrayList.get(position).getUsername());
+        viewHolder.txtLocation.setText(arrayList.get(position).getDistance());
+        viewHolder.txtContentSend.setText(arrayList.get(position).getLast_msg());
+        viewHolder.txtContentReciver.setText("");
 
         if (viewHolder.txtContentSend.getText().toString().isEmpty()) {
             viewHolder.txtContentSend.setVisibility(View.GONE);
