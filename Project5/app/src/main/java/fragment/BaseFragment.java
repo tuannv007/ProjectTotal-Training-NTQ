@@ -21,7 +21,7 @@ import com.example.admin.project1final.R;
 public abstract class BaseFragment extends Fragment {
     DrawerLayout drawerLayout = MainActivity.drawerLayout;
 
-    void goBack() {
+    public void goBack() {
         getFragmentManager().popBackStack();
     }
 

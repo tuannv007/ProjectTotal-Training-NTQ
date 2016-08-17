@@ -14,6 +14,7 @@ public class User {
     private String birthday;
     private int gender;
     private boolean isOnline;
+    private String token;
 
     public User() {
     }
@@ -32,6 +33,14 @@ public class User {
         this.username = username;
         this.gender = gender;
         this.isOnline = isOnline;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getFrd_id() {

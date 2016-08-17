@@ -8,13 +8,15 @@ import android.widget.Button;
 
 import com.example.admin.project1final.R;
 
+import key.api.BaseApiFragment;
+
 import static com.example.admin.project1final.R.drawable.background_search_setting;
 import static com.example.admin.project1final.R.drawable.background_world;
 
 /**
  * Created by admin on 7/19/2016.
  */
-public abstract class ChangeBackgroundButtonStateSetting extends BaseFragment {
+public abstract class ChangeBackgroundButtonStateSetting extends BaseApiFragment {
     public Boolean isChecked =true;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)

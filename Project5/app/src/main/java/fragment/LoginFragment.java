@@ -38,6 +38,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private User user;
+    private String token;
 
     @Nullable
     @Override
@@ -133,6 +134,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
             user.setEmail(email);
             user.setPassword(password);
             new LoginAsyncTask().execute(KeyParam.mUrl, user.getEmail(), md5(user.getPassword()));
+
         }
     }
 
@@ -168,8 +170,8 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
             try {
                 JSONObject jsonReader = new JSONObject(s);
                 JSONObject jSonObject = jsonReader.getJSONObject("data");
-                String token = jSonObject.getString("token");
-                String ueser_id =jSonObject.getString("user_id");
+                token = jSonObject.getString("token");
+                user.setToken(token);
                 Log.i("tag",token);
             } catch (JSONException e) {
                 e.printStackTrace();
