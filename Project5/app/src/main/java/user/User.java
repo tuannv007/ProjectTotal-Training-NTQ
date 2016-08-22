@@ -12,7 +12,7 @@ public class User {
     private String notify_token;
     private int avatar;
     private String birthday;
-    private int gender;
+    private int gender,nameShowme,nameInterred,nameDistance,lower_age,upper_age;
     private boolean isOnline;
     private String token;
 
@@ -33,6 +33,46 @@ public class User {
         this.username = username;
         this.gender = gender;
         this.isOnline = isOnline;
+    }
+
+    public int getUpper_age() {
+        return upper_age;
+    }
+
+    public void setUpper_age(int upper_age) {
+        this.upper_age = upper_age;
+    }
+
+    public int getLower_age() {
+        return lower_age;
+    }
+
+    public void setLower_age(int lower_age) {
+        this.lower_age = lower_age;
+    }
+
+    public int getNameDistance() {
+        return nameDistance;
+    }
+
+    public void setNameDistance(int nameDistance) {
+        this.nameDistance = nameDistance;
+    }
+
+    public int getNameInterred() {
+        return nameInterred;
+    }
+
+    public void setNameInterred(int nameInterred) {
+        this.nameInterred = nameInterred;
+    }
+
+    public int getNameShowme() {
+        return nameShowme;
+    }
+
+    public void setNameShowme(int nameShowme) {
+        this.nameShowme = nameShowme;
     }
 
     public String getToken() {

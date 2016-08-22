@@ -74,17 +74,23 @@
                 android:padding="4dp">
 
                 <Button
+                    android:textAllCaps="false"
+                    android:text="@string/male"
                     android:drawableTop="@drawable/search_setting_btn_city"
                     android:id="@+id/showme_1"
                     style="@style/buttonSearchSetting" />
 
                 <Button
+                    android:textAllCaps="false"
+                    android:text="@string/female"
                     android:drawableTop="@drawable/search_setting_btn_city"
                     android:id="@+id/showme_2"
                     style="@style/buttonSearchSetting"
                     android:checked="false"/>
 
                 <Button
+                    android:textAllCaps="false"
+                    android:text="@string/both"
                     android:drawableTop="@drawable/search_setting_btn_city"
                     android:id="@+id/showme_3"
                     style="@style/buttonSearchSetting" />
@@ -106,14 +112,20 @@
                 android:padding="5dp">
 
                 <Button android:id="@+id/interredted_one"
+                        android:textAllCaps="false"
+                        android:text="@string/male"
                     android:drawableTop="@drawable/search_setting_btn_near"
                     style="@style/buttonSearchSetting" />
 
                 <Button android:id="@+id/interredted_2"
+                        android:textAllCaps="false"
+                        android:text="@string/female"
                     android:drawableTop="@drawable/search_setting_btn_near"
                     style="@style/buttonSearchSetting" />
 
                 <Button
+                    android:textAllCaps="false"
+                    android:text="@string/both"
                     android:id="@+id/interredted_3"
                     android:drawableTop="@drawable/search_setting_btn_near"
                     style="@style/buttonSearchSetting" />
@@ -123,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
-                android:text="@string/interreadin"
+                android:text="@string/distance"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
 

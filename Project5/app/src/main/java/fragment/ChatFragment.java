@@ -12,6 +12,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
 
@@ -21,7 +27,9 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import key.api.KeyParam;
 import key.api.listconversation.KeyListConversation;
 import my.item.ItemSearchFriendListview;
 import myadapter.ChatContentAdapter;
@@ -50,7 +58,10 @@ public class ChatFragment extends BaseFragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
       /*  initData();*/
+/*
         new ChatAsyncTask().execute();
+*/
+        getData();
         myAdapter = new ChatContentAdapter(getActivity(), arrChat);
         listView.setAdapter(myAdapter);
 
@@ -72,23 +83,6 @@ public class ChatFragment extends BaseFragment implements View.OnClickListener {
         imvDelete.setOnClickListener(this);
     }
 
-   /* private void initData() {
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Receveraaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_female_bg, "30mi", "45h", "Content Send", "", false, "Quynh"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "Content Send", "", true, "Nhung"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Recever", true, "Hoa"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Recever", false, "Lan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Recever", false, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Recever", true, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "Content Send", "", false, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Recever", true, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Recever", false, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "Content Send", "", true, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "Content Send", "", false, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "Content Send", "", true, "Tuan"));
-        arrChat.add(new ItemSearchFriendListview(R.drawable.default_male_bg, "30mi", "45h", "", "Content Recever", true, "Tuan"));
-    }*/
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -107,8 +101,48 @@ public class ChatFragment extends BaseFragment implements View.OnClickListener {
         }
         myAdapter.notifyDataSetChanged();
     }
+    private void getData(){
+        HashMap<String, Object> object = new HashMap<>();
+        String file =readJsonInFile();
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        JsonObjectRequest request = new JsonObjectRequest(file, new JSONObject(object),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("tagSearchSetting", response.toString());
+                        JSONObject jsonObject = response;
+                        try {
+                            String frd_id = jsonObject.getString(KeyListConversation.keyIdFriend);
+                            String frd_name = jsonObject.getString(KeyListConversation.keyFriendName);
+                            int gender = Integer.parseInt(jsonObject.getString(KeyListConversation.keyGender));
+                            boolean is_online = Boolean.parseBoolean(jsonObject.getString(KeyListConversation.keyOnline));
+                            String ava_id = jsonObject.getString(KeyListConversation.keyAvatarId);
+                            String last_msg = jsonObject.getString(KeyListConversation.keyLastMessage);
+                            String is_own = jsonObject.getString(KeyListConversation.keyIsOwn);
+                            String sent_time = jsonObject.getString(KeyListConversation.keySendTime);
+                            String unread_num = jsonObject.getString(KeyListConversation.keyUnreadNum);
+                            String longs = jsonObject.getString(KeyListConversation.keyLong);
+                            String lat = jsonObject.getString(KeyListConversation.keyLat);
+                            String dist = jsonObject.getString(KeyListConversation.keyDistance);
+                            String msg_type = jsonObject.getString(KeyListConversation.keyMessageType);
+                            User user = new User(frd_id,ava_id,last_msg,is_own,sent_time,unread_num,longs,lat,dist,msg_type,frd_name,gender,is_online);
+                            arrChat.add(user);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-    private class ChatAsyncTask extends AsyncTask<String, Void, ArrayList<User>> {
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        });
+
+        mRequestQueue.add(request);
+    }
+
+    /*private class ChatAsyncTask extends AsyncTask<String, Void, ArrayList<User>> {
 
         @Override
         protected ArrayList<User> doInBackground(String... params) {
@@ -133,21 +167,21 @@ public class ChatFragment extends BaseFragment implements View.OnClickListener {
                 int lengthJsonArr = jsonMainNode.length();
                 // for length arrayJson
                 for (int i = 0; i < lengthJsonArr; i++) {
-                    JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
+                    JSONObject jsonObject = jsonMainNode.getJSONObject(i);
                     //get value in jSonObject
-                    String frd_id = jsonChildNode.getString(KeyListConversation.keyIdFriend);
-                    String frd_name = jsonChildNode.getString(KeyListConversation.keyFriendName);
-                    int gender = Integer.parseInt(jsonChildNode.getString(KeyListConversation.keyGender));
-                    boolean is_online = Boolean.parseBoolean(jsonChildNode.getString(KeyListConversation.keyOnline));
-                    String ava_id = jsonChildNode.getString(KeyListConversation.keyAvatarId);
-                    String last_msg = jsonChildNode.getString(KeyListConversation.keyLastMessage);
-                    String is_own = jsonChildNode.getString(KeyListConversation.keyIsOwn);
-                    String sent_time = jsonChildNode.getString(KeyListConversation.keySendTime);
-                    String unread_num = jsonChildNode.getString(KeyListConversation.keyUnreadNum);
-                    String longs = jsonChildNode.getString(KeyListConversation.keyLong);
-                    String lat = jsonChildNode.getString(KeyListConversation.keyLat);
-                    String dist = jsonChildNode.getString(KeyListConversation.keyDistance);
-                    String msg_type = jsonChildNode.getString(KeyListConversation.keyMessageType);
+                    String frd_id = jsonObject.getString(KeyListConversation.keyIdFriend);
+                    String frd_name = jsonObject.getString(KeyListConversation.keyFriendName);
+                    int gender = Integer.parseInt(jsonObject.getString(KeyListConversation.keyGender));
+                    boolean is_online = Boolean.parseBoolean(jsonObject.getString(KeyListConversation.keyOnline));
+                    String ava_id = jsonObject.getString(KeyListConversation.keyAvatarId);
+                    String last_msg = jsonObject.getString(KeyListConversation.keyLastMessage);
+                    String is_own = jsonObject.getString(KeyListConversation.keyIsOwn);
+                    String sent_time = jsonObject.getString(KeyListConversation.keySendTime);
+                    String unread_num = jsonObject.getString(KeyListConversation.keyUnreadNum);
+                    String longs = jsonObject.getString(KeyListConversation.keyLong);
+                    String lat = jsonObject.getString(KeyListConversation.keyLat);
+                    String dist = jsonObject.getString(KeyListConversation.keyDistance);
+                    String msg_type = jsonObject.getString(KeyListConversation.keyMessageType);
 
                     User user = new User(frd_id,ava_id,last_msg,is_own,sent_time,unread_num,longs,lat,dist,msg_type,frd_name,gender,is_online);
                     arrChat.add(user);
@@ -158,7 +192,7 @@ public class ChatFragment extends BaseFragment implements View.OnClickListener {
             }
 
         }
-    }
+    }*/
 
     private String readJsonInFile() {
         try {

@@ -16,6 +16,14 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
 
@@ -23,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import key.api.KeyParam;
 import key.api.listconversation.KeyListConversation;
@@ -68,7 +77,10 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
     private String isShowMe1 = "isShowMe1";
     private String isShowMe2 = "isShowMe2";
     private String isShowMe3 = "isShowMe3";
-    private String nameShowMe;
+    private String nameShowMe = "";
+    private String nameDistance = "";
+    private String nameInterred = "";
+    private User user;
 
     @Nullable
     @Override
@@ -85,7 +97,6 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
         btnWord.setClickable(true);
         ((MainActivity) getActivity()).hideActionbar();
         sharedPreferences = getActivity().getSharedPreferences(KEY_BETWEEN, Context.MODE_PRIVATE);
-
     }
 
     private void initView(View view) {
@@ -216,7 +227,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
                 openDrawerLayout();
                 break;
             case R.id.btnSearch:
-                new SearchFriendAsyncTask().execute(KeyParam.mUrl);
+                searchFriendBySetting();
                 break;
         }
 
@@ -268,19 +279,19 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
         if (!txtRthnicity.getText().toString().equals(""))
             editor.putString(KEY_ETHNICITY, txtRthnicity.getText().toString());
         if (arrayInteres.size() > 0) {
-            String name = arrayInteres.get(arrayInteres.size() - 1);
-            editor.putString(KEY_NAME, name);
+            nameDistance = arrayInteres.get(arrayInteres.size() - 1);
+            editor.putString(KEY_NAME, nameDistance);
         } else if (arrayInteres.size() == -1) {
             return;
         }
         if (arrayIn.size() > 0) {
-            String nameInterred = arrayIn.get(arrayIn.size() - 1);
+            nameInterred = arrayIn.get(arrayIn.size() - 1);
             editor.putString(KEY_INTER, nameInterred);
         } else if (arrayIn.size() == -1) {
             return;
         }
         if (arrShowMe.size() > 0) {
-             nameShowMe = arrShowMe.get(arrShowMe.size() - 1);
+            nameShowMe = arrShowMe.get(arrShowMe.size() - 1);
             editor.putString(KEY_SHOWME, nameShowMe);
         } else if (arrShowMe.size() == -1) {
             return;
@@ -335,20 +346,98 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
         }
 
     }
-    private class SearchFriendAsyncTask extends AsyncTask<String,Void,Void>{
 
-        @Override
-        protected Void doInBackground(String... params) {
-            User user = new User();
-            JSONObject object = new JSONObject();
-            try {
-                object.put(KeyParam.KeyApi,"meet_people");
-                object.put("token",user.getToken());
-                Log.i("Tag",user.getToken());
-            } catch (JSONException e) {
-                e.printStackTrace();
+    private String getToken() {
+        if (getArguments() == null) return "";
+        else {
+            return getArguments().getString(MainActivity.KEY_TOKEN);
+        }
+    }
+
+    private void splitAge() {
+        String age = txtAge.getText().toString();
+        if (!age.isEmpty()) {
+            String ageSplit[] = age.split(" ");
+            int lower_age = Integer.parseInt(ageSplit[0]);
+            int upper_age = Integer.parseInt(ageSplit[2]);
+            user.setLower_age(lower_age);
+            user.setUpper_age(upper_age);
+        }
+
+    }
+
+    private void getDistance() {
+        if (nameDistance.equalsIgnoreCase(isNear)) {
+            user.setNameDistance(0);
+        } else if (nameDistance.equalsIgnoreCase(isCity)) {
+            user.setNameDistance(1);
+        } else if (nameDistance.equalsIgnoreCase(isState)) {
+            user.setNameDistance(2);
+        } else if (nameDistance.equalsIgnoreCase(isCountry)) {
+            user.setNameDistance(3);
+        } else if (nameDistance.equalsIgnoreCase(isWord)) {
+            user.setNameDistance(4);
+        }
+    }
+
+    private void searchFriendBySetting() {
+        ArrayList<Integer> arrEtho = new ArrayList<>();
+        arrEtho.add(1);
+        String s = getToken();
+        user = new User();
+        getDistance();
+        splitAge();
+        if (nameShowMe.equalsIgnoreCase(isShowMe1)) {
+            user.setNameShowme(0);
+        } else if (nameShowMe.equalsIgnoreCase(isShowMe2)) {
+            user.setNameShowme(1);
+        } else if (nameShowMe.equalsIgnoreCase(isShowMe3)) {
+            user.setNameShowme(2);
+        }
+        if (nameInterred.equalsIgnoreCase(isInterredOne)) {
+            user.setNameInterred(0);
+        } else if (nameInterred.equalsIgnoreCase(isInterredTwo))
+            user.setNameInterred(0);
+        else if (nameInterred.equalsIgnoreCase(isInterredThree))
+            user.setNameInterred(0);
+        HashMap<String, Object> object = new HashMap<>();
+        object.put(KeyParam.KeyApi, "meet_people");
+        object.put("token", s);
+        object.put("show_me", user.getNameShowme());
+        object.put("inters_in", user.getNameInterred());
+        object.put("lower_age", user.getLower_age());
+        object.put("upper_age", user.getUpper_age());
+        object.put("ethn", arrEtho);
+        object.put("long", 2);
+        object.put("lat", 2);
+        object.put("distance", user.getNameDistance());
+        object.put("skip", 1);
+        object.put("take", 1);
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        JsonObjectRequest request = new JsonObjectRequest(KeyParam.mUrl, new JSONObject(object),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("tagSearchSetting", response.toString());
+                        showErrorSearch(response.toString());
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
             }
-            return null;
+        });
+
+        mRequestQueue.add(request);
+    }
+
+    private void showErrorSearch(String s) {
+        showError(s);
+        if (s.equalsIgnoreCase(error_03)) {
+            showMessage("Invalidate_Token");
+        } else {
+            showMessage("Search Successfully ! ");
         }
     }
 }

@@ -138,4 +138,5 @@
     <string name="birthday">BirthDay</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="both">both</string>
 </resources>

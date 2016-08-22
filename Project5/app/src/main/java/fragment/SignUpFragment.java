@@ -1,9 +1,13 @@
 package fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +18,40 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
 import java.security.Key;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
+import cz.msebera.android.httpclient.Header;
 import key.api.BaseApiFragment;
 import key.api.KeyParam;
+import key.api.SignUp;
 import key.name.fragment.tag.NameFragment;
 import user.User;
 
@@ -41,6 +66,11 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
     private DatePickerDialog fromDatePickerDialog;
     private RadioButton rdbMale, rdbFemale;
     private RadioGroup rdbGroup;
+    private String email;
+    private String password;
+    public static final String KEY_EMAIL = "key_email";
+    public static final String KEY_PASSWORD = "key_password";
+
 
     @Nullable
     @Override
@@ -65,6 +95,22 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
         btnRegister.setOnClickListener(this);
         edtBirthDay.setOnClickListener(this);
         ((MainActivity) getActivity()).showActionbarSignUp();
+        if (!myClickHandler()) {
+            Toast.makeText(getActivity(), "NOT CONNECT INTERNET", Toast.LENGTH_LONG).show();
+            return;
+        }
+    }
+
+    public boolean myClickHandler() {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        } else {
+            // display error
+            return false;
+        }
     }
 
     private void configDialog() {
@@ -82,8 +128,8 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
     }
 
     private void registerUser() {
-        String email = edtEmail.getText().toString();
-        String password = edtPassword.getText().toString();
+        email = edtEmail.getText().toString();
+        password = edtPassword.getText().toString();
         String username = edtUsername.getText().toString();
         String birthday = edtBirthDay.getText().toString();
         String birthDayConfig = birthday.replace("-", "");
@@ -101,7 +147,8 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
         } else if (email.isEmpty() && password.isEmpty()) {
             Toast.makeText(getActivity(), "Email and Password not empty", Toast.LENGTH_LONG).show();
         } else {
-            new RegisterAsyncTask().execute(KeyParam.mUrl);
+          /*  new RegisterAsyncTask().execute(KeyParam.mUrl);*/
+            postDataSignUp();
         }
 
     }
@@ -111,49 +158,119 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
         else return 1;
     }
 
-    private class RegisterAsyncTask extends AsyncTask<String, Void, String> {
+    /*  private class RegisterAsyncTask extends AsyncTask<String, Void, String> {
 
-        private String s;
+          private String s;
 
 
-        @Override
-        protected String doInBackground(String... params) {
-            final JSONObject object = new JSONObject();
-            try {
-                object.put(KeyParam.KeyApi, "register_version_2");
-                object.put(KeyParam.KeyApiUserName, user.getUsername());
-                object.put(KeyParam.KeyApiEmail, user.getEmail());
-                object.put(KeyParam.KeyApiPassword, md5(user.getPassword()));
-                object.put(KeyParam.KeyApiBirthDay, user.getBirthday());
-                object.put(KeyParam.KeyApiInterIn, 0);
-                object.put(KeyParam.KeyApiDeviceID, "android");
-                object.put(KeyParam.KeyApiNotifyToken, "sjdks");
-                object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
-                object.put(KeyParam.KeyApiLoginTime, "20120223123412");
-                object.put(KeyParam.KeyApiIvtCode, "gshd");
-                object.put(KeyParam.KeyApiOriginalPass, user.getPassword());
-                object.put(KeyParam.KeyApiGender, user.getGender());
-            } catch (JSONException e) {
-                e.printStackTrace();
+          @Override
+          protected String doInBackground(String... params) {
+              AsyncHttpClient httpClient = new AsyncHttpClient();
+              httpClient.get(params[0], new AsyncHttpResponseHandler() {
+                  @Override
+                  public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                      JSONObject object = new JSONObject();
+                      try {
+                          object.put(KeyParam.KeyApi, "register_version_2");
+                          object.put(KeyParam.KeyApiUserName, user.getUsername());
+                          object.put(KeyParam.KeyApiEmail, user.getEmail());
+                          object.put(KeyParam.KeyApiPassword, md5(user.getPassword()));
+                          object.put(KeyParam.KeyApiBirthDay, user.getBirthday());
+                          object.put(KeyParam.KeyApiInterIn, 0);
+                          object.put(KeyParam.KeyApiDeviceID, "android");
+                          object.put(KeyParam.KeyApiNotifyToken, "sjdks");
+                          object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
+                          object.put(KeyParam.KeyApiLoginTime, "20120223123412");
+                          object.put(KeyParam.KeyApiIvtCode, "gshd");
+                          object.put(KeyParam.KeyApiOriginalPass, user.getPassword());
+                          object.put(KeyParam.KeyApiGender, user.getGender());
+                      } catch (JSONException e) {
+                          e.printStackTrace();
+                      }
+
+                  }
+
+                  @Override
+                  public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                  }
+              });
+              return null;
+          }
+
+          @Override
+          protected void onPostExecute(String s) {
+              super.onPostExecute(s);
+              showMessage(s);
+          }
+
+
+      }*/
+    private void postDataSignUp() {
+        HashMap<String, Object> object = new HashMap<>();
+        object.put(KeyParam.KeyApi, "register_version_2");
+        object.put(KeyParam.KeyApiUserName, user.getUsername());
+        object.put(KeyParam.KeyApiEmail, user.getEmail());
+        object.put(KeyParam.KeyApiPassword, md5(user.getPassword()));
+        object.put(KeyParam.KeyApiBirthDay, user.getBirthday());
+        object.put(KeyParam.KeyApiInterIn, 0);
+        object.put(KeyParam.KeyApiDeviceID, "android");
+        object.put(KeyParam.KeyApiNotifyToken, "sjdks");
+        object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
+        object.put(KeyParam.KeyApiLoginTime, "20120223123412");
+        object.put(KeyParam.KeyApiIvtCode, "gshd");
+        object.put(KeyParam.KeyApiOriginalPass, user.getPassword());
+        object.put(KeyParam.KeyApiGender, user.getGender());
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        String mUrl = KeyParam.mUrl;
+        JsonObjectRequest request = new JsonObjectRequest(mUrl, new JSONObject(object),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("tag", response.toString());
+                        showErrorSignUp(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
             }
+        });
 
-            s = sendRequest(params[0], object.toString(), 15000, 15000);
-            return s;
+        mRequestQueue.add(request);
+
+    }
+
+    private void showErrorSignUp(String s) {
+        showError(s);
+        if (s.equalsIgnoreCase(error_11)) {
+            showMessage("INVALID_EMAIL");
+        } else if (s.equalsIgnoreCase(error_12)) {
+            showMessage("EMAIL_REGISTERED");
+        } else if (s.equalsIgnoreCase(error_14)) {
+            showMessage("INVALID_USER_NAME");
+        } else if (s.equalsIgnoreCase(error_21)) {
+            showMessage("INVALID_PASSWORD");
+        } else {
+            showMessage("Register SuccessFully");
+            Bundle bundle = new Bundle();
+            bundle.putString(KEY_EMAIL, edtEmail.getText().toString());
+            bundle.putString(KEY_PASSWORD, edtPassword.getText().toString());
+            LoginFragment login = new LoginFragment();
+            login.setArguments(bundle);
+            changeFragment(login, NameFragment.loginFragment);
+        /*}*/
         }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            showError(s, new LoginFragment(), NameFragment.loginFragment);
-        }
-
-
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_register:
+                if (!myClickHandler()) {
+                    Toast.makeText(getActivity(), "NOT CONNECT INTERNET", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 registerUser();
                 break;
             case R.id.edt_birthday:

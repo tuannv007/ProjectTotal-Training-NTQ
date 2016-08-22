@@ -3,6 +3,8 @@ package fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,12 +15,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import key.api.BaseApiFragment;
 import key.api.KeyParam;
@@ -39,6 +50,10 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private SharedPreferences.Editor editor;
     private User user;
     private String token;
+    private String email;
+    private String password;
+    private String emailRecever;
+    private String passwordRecever;
 
     @Nullable
     @Override
@@ -47,11 +62,33 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
 
     }
 
+  /*  public static LoginFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        LoginFragment fragment = new LoginFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }*/
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() == null) return;
+        else {
+            emailRecever = getArguments().getString(SignUpFragment.KEY_EMAIL);
+            passwordRecever = getArguments().getString(SignUpFragment.KEY_PASSWORD);
+
+        }
+    }
+
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-
+        edtUsername.setText(emailRecever);
+        edtPassword.setText(passwordRecever);
     }
 
     private void initView(View view) {
@@ -66,12 +103,6 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
-               /* if () {
-                    MainFragment main = new MainFragment();
-                    changeFragment(main, NameFragment.mainFragmnet);
-                } else {
-                    showDialogError();
-                }*/
                 loginUser();
                 break;
         }
@@ -87,8 +118,10 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     public void onResume() {
         super.onResume();
         ((MainActivity) getActivity()).showActionbarLogin();
-        restoreLogin();
+        if (getArguments() == null)
+            restoreLogin();
     }
+
 
     private void showDialogError() {
         alertDialog.setTitle("Login error !");
@@ -122,8 +155,8 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     }
 
     private void loginUser() {
-        String email = edtUsername.getText().toString();
-        String password = edtPassword.getText().toString();
+        email = edtUsername.getText().toString();
+        password = edtPassword.getText().toString();
 
         if (email.isEmpty()) {
             showMessage("Email not empty");
@@ -131,52 +164,84 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
             showMessage("Password not empty");
         } else {
             user = new User();
-            user.setEmail(email);
-            user.setPassword(password);
-            new LoginAsyncTask().execute(KeyParam.mUrl, user.getEmail(), md5(user.getPassword()));
-
+            user.setEmail(emailRecever);
+            user.setPassword(passwordRecever);
+            if (getArguments() == null) {
+                user.setEmail(email);
+                user.setPassword(password);
+            }
+            postDataLogin();
         }
     }
 
-    private class LoginAsyncTask extends AsyncTask<String, Void, String> {
-        private String s;
-
-        @Override
-        protected String doInBackground(String... params) {
-            JSONObject object = new JSONObject();
-
-            try {
-                String keyLogin = "login";
-                String keyAndroid = "android";
-                object.put(KeyParam.KeyApi, keyLogin);
-                object.put(KeyParam.KeyApiEmail, params[1]);
-                object.put(KeyParam.KeyApiPassword, params[2]);
-                object.put(KeyParam.KeyApiDeviceID, keyAndroid);
-                object.put(KeyParam.KeyApiNotifyToken, "sjdks");
-                object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
-                object.put(KeyParam.KeyApiLoginTime, "20160223123412");
-            } catch (JSONException e) {
-                e.printStackTrace();
+    private void postDataLogin() {
+        HashMap<String, Object> object = new HashMap<>();
+        String keyLogin = "login";
+        String keyAndroid = "android";
+        object.put(KeyParam.KeyApi, keyLogin);
+        object.put(KeyParam.KeyApiEmail, user.getEmail());
+        object.put(KeyParam.KeyApiPassword, md5(user.getPassword()));
+        object.put(KeyParam.KeyApiDeviceID, keyAndroid);
+        object.put(KeyParam.KeyApiNotifyToken, "sjdks");
+        object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
+        object.put(KeyParam.KeyApiLoginTime, "20160223123412");
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        String mUrl = KeyParam.mUrl;
+        JsonObjectRequest request = new JsonObjectRequest(mUrl, new JSONObject(object),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("tag", response.toString());
+                        try {
+                            JSONObject reJsonObject = response.getJSONObject("data");
+                            token = reJsonObject.getString("token");
+                            listener.sendToken(token);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        showErrorLogin(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
             }
-            s = sendRequest(params[0], object.toString(), 15000, 15000);
+        });
 
-            return s;
+        mRequestQueue.add(request);
+    }
 
+    private void showErrorLogin(String s) {
+        showError(s);
+        if (s.equalsIgnoreCase(error_02)) {
+            showMessage("WRONG_DATA_FORMAT");
+        } else if (s.equalsIgnoreCase(error_10)) {
+            showMessage("EMAIL_NOT_FOUND");
+        } else if (s.equalsIgnoreCase(error_20)) {
+            showMessage("INCORRECT_PASSWORD");
+        } else if (s.equalsIgnoreCase(error_81)) {
+            showMessage(" LOCKED _USER");
+        } else {
+            showMessage("Login Successfully");
+            changeFragment(new MainFragment(), NameFragment.mainFragmnet);
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                JSONObject jsonReader = new JSONObject(s);
-                JSONObject jSonObject = jsonReader.getJSONObject("data");
-                token = jSonObject.getString("token");
-                user.setToken(token);
-                Log.i("tag",token);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            showError(s, new MainFragment(), NameFragment.mainFragmnet);
-        }
+    }
+
+    private pushToken listener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof pushToken)
+            listener = (pushToken) getActivity();
+        else
+            throw new ClassCastException(context.toString()
+                    + " must implemenet MyListFragment.OnItemSelectedListener");
+
+    }
+
+    public interface pushToken {
+        void sendToken(String token);
     }
 }

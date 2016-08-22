@@ -3,6 +3,7 @@ package com.example.admin.project1final;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import fragment.AutionFragment;
 import fragment.ChatFragment;
 import fragment.EditProfileFragment;
 import fragment.GiveGiftFragment;
+import fragment.LoginFragment;
 import fragment.MainFragment;
 import fragment.NotificationProject2Fragment;
 import fragment.NotificationsFragment;
@@ -21,8 +23,10 @@ import fragment.SettingFragment;
 import fragment.WellcomeFragment;
 import key.name.fragment.tag.NameFragment;
 
-public class MainActivity extends MyActivity implements View.OnClickListener {
+public class MainActivity extends MyActivity implements View.OnClickListener, LoginFragment.pushToken {
     public static DrawerLayout drawerLayout;
+    private String getToken;
+    public static  String KEY_TOKEN = "key_token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +128,11 @@ public class MainActivity extends MyActivity implements View.OnClickListener {
             case R.id.lnl_search_setting:
                 Fragment fragmentSearchSetting = checkFragment(NameFragment.searchSettingFragment);
                 if (fragmentSearchSetting == null) {
-                    changeFragment(new SearchSettingFragment(), NameFragment.searchFriendFragment);
+                    SearchSettingFragment searchSettingFragment = new SearchSettingFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(KEY_TOKEN, getToken);
+                    searchSettingFragment.setArguments(bundle);
+                    changeFragment(searchSettingFragment, NameFragment.searchFriendFragment);
                     closeNavigation();
                     hideActionbar();
                     /*showActionbarAuction("Search Friend");*/
@@ -185,11 +193,13 @@ public class MainActivity extends MyActivity implements View.OnClickListener {
             getSupportActionBar().show();
         setUpLoginActionbar("Login");
     }
+
     public void showActionbarSignUp() {
         if (getSupportActionBar() != null)
             getSupportActionBar().show();
         setUpLoginActionbar("Sign Up");
     }
+
     private void closeNavigation() {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
@@ -236,7 +246,6 @@ public class MainActivity extends MyActivity implements View.OnClickListener {
         }
 
 
-
         Fragment activeWellcome = checkFragment(NameFragment.wellcomeFragment);
 
         Fragment activeLogin = checkFragment(NameFragment.loginFragment);
@@ -260,5 +269,10 @@ public class MainActivity extends MyActivity implements View.OnClickListener {
     public void hideActionbar() {
         if (getSupportActionBar() != null)
             getSupportActionBar().hide();
+    }
+
+    @Override
+    public void sendToken(String token) {
+        getToken = token;
     }
 }
