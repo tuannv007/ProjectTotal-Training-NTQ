@@ -4,9 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -45,14 +41,13 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private static final String KEY_PASSWORD = "key_password";
     private static final String KEY_USERNAME = "key_username";
     private EditText edtUsername, edtPassword;
-    private Button btnLogin, btnBack, btnForgot;
+    private Button btnBack;
+    private Button btnForgot;
     private AlertDialog.Builder alertDialog;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private User user;
     private String token;
-    private String email;
-    private String password;
     private String emailRecever;
     private String passwordRecever;
     private ProgressDialog dialog;
@@ -96,7 +91,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private void initView(View view) {
         edtUsername = (EditText) view.findViewById(R.id.edtUsername);
         edtPassword = (EditText) view.findViewById(R.id.edtPassword);
-        btnLogin = (Button) view.findViewById(R.id.btnLogin);
+        Button btnLogin = (Button) view.findViewById(R.id.btnLogin);
         alertDialog = new AlertDialog.Builder(getActivity());
         btnLogin.setOnClickListener(this);
     }
@@ -158,13 +153,13 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     }
 
     private void loginUser() {
-        email = edtUsername.getText().toString();
-        password = edtPassword.getText().toString();
+        String email = edtUsername.getText().toString();
+        String password = edtPassword.getText().toString();
 
         if (email.isEmpty()) {
-            showMessage("Email not empty");
+            showMessage(R.string.emailNotEmpty+"");
         } else if (password.isEmpty()) {
-            showMessage("Password not empty");
+            showMessage(R.string.passwordNotEmpty+"");
         } else {
             user = new User();
             user.setEmail(emailRecever);
@@ -179,7 +174,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
 
     private void showProgressbar() {
         dialog = new ProgressDialog(getActivity());
-        dialog.setMessage("Loading");
+        dialog.setMessage(R.string.loading+"");
         dialog.show();
     }
 
@@ -227,15 +222,15 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private void showErrorLogin(String s) {
         showError(s);
         if (s.equalsIgnoreCase(error_02)) {
-            showMessage("WRONG_DATA_FORMAT");
+            showMessage(R.string.WRONG_DATA_FORMAT +"");
         } else if (s.equalsIgnoreCase(error_10)) {
-            showMessage("EMAIL_NOT_FOUND");
+            showMessage(R.string.EMAIL_NOT_FOUND+"");
         } else if (s.equalsIgnoreCase(error_20)) {
-            showMessage("INCORRECT_PASSWORD");
+            showMessage(R.string.INCORRECT_PASSWORD+"");
         } else if (s.equalsIgnoreCase(error_81)) {
-            showMessage(" LOCKED _USER");
+            showMessage(R.string. LOCKED_USER+"");
         } else {
-            showMessage("Login Successfully");
+            showMessage(R.string.LoginSuccessfully+"");
             changeFragment(new MainFragment(), NameFragment.mainFragmnet);
         }
 

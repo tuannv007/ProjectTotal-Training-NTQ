@@ -139,4 +139,16 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="both">both</string>
+    <string name="emailNotEmpty">Email not empty</string>
+    <string name="passwordNotEmpty">Password not empty</string>
+    <string name="loading">Loading</string>
+    <string name="WRONG_DATA_FORMAT">WRONG_DATA_FORMAT</string>
+    <string name="EMAIL_NOT_FOUND">EMAIL_NOT_FOUND</string>
+    <string name="INCORRECT_PASSWORD">INCORRECT_PASSWORD</string>
+    <string name="LOCKED_USER">LOCKED _USER</string>
+    <string name="LoginSuccessfully">Login Successfully</string>
+    <string name="INVALID_EMAIL">INVALID_EMAIL</string>
+    <string name="EMAIL_REGISTERED">EMAIL_REGISTERED</string>
+    <string name="INVALID_USER_NAME">INVALID_USER_NAME</string>
+    <string name="INVALID_PASSWORD">INVALID_PASSWORD</string>
 </resources>

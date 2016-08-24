@@ -244,13 +244,13 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
     private void showErrorSignUp(String s) {
         showError(s);
         if (s.equalsIgnoreCase(error_11)) {
-            showMessage("INVALID_EMAIL");
+            showMessage(R.string.INVALID_EMAIL+"");
         } else if (s.equalsIgnoreCase(error_12)) {
-            showMessage("EMAIL_REGISTERED");
+            showMessage(R.string.EMAIL_REGISTERED+"");
         } else if (s.equalsIgnoreCase(error_14)) {
-            showMessage("INVALID_USER_NAME");
+            showMessage(R.string.INVALID_USER_NAME+"");
         } else if (s.equalsIgnoreCase(error_21)) {
-            showMessage("INVALID_PASSWORD");
+            showMessage(R.string.INVALID_PASSWORD+"");
         } else {
             showMessage("Register SuccessFully");
             Bundle bundle = new Bundle();
