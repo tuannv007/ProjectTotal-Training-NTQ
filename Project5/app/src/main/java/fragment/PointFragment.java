@@ -2,11 +2,9 @@ package fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.admin.project1final.MainActivity;
@@ -22,7 +20,7 @@ public class PointFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.point_layout,container,false);
+        return inflater.inflate(R.layout.point_layout, container, false);
     }
 
     @Override
@@ -40,6 +38,6 @@ public class PointFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).hideActionbar();
+        ((MainActivity) getActivity()).hideActionbar();
     }
 }

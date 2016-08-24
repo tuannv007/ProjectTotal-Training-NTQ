@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,7 +32,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private static final String KEY_SAVING = "key_saving";
     private static final String KEY_SOUNT = "key_sount";
     private static final String KEY_VIBRATION = "key_vibration";
-    private static final String TAG ="SettingFragment" ;
+    private static final String TAG = "SettingFragment";
     private TextView txtContentSetting, txtSetDistanceReport;
     private Button btnSaveSetting;
     private ImageView imvOpenDrawerLayout;
@@ -139,7 +138,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 closeDrawerLayout();
                 break;
             case R.id.lnl_distance:
-                 distanceInFragment = new DistanceInFragment();
+                distanceInFragment = new DistanceInFragment();
                 distanceInFragment.setTargetFragment(this, REQUES_CODE);
                 changeFragment(distanceInFragment, NameFragment.DistanceInFragment);
                 closeDrawerLayout();
@@ -151,9 +150,9 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 getFragmentManager().beginTransaction().replace(R.id.sub_screen, new PointFragment(), "").addToBackStack(null).commit();
                 break;
             case R.id.btnSaveSetting:
-                Toast.makeText(getActivity(),"Save Succesfuly",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Save Succesfuly", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.ckb_sound :
+            case R.id.ckb_sound:
                 if (ckbSound.isChecked()) {
                     editor.putBoolean(KEY_SOUNT, true);
                 } else {
@@ -194,7 +193,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         txtSetDistanceReport.setText(values);
         restoreDataSharePreference();
         resumeDistaninValues();
-        ((MainActivity)getActivity()).hideActionbar();
+        ((MainActivity) getActivity()).hideActionbar();
     }
 
     @Override
@@ -202,12 +201,14 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         super.onStart();
 
     }
+
     private void restoreDataSharePreference() {
         boolean ckbCheckSound = sharedPreferences.getBoolean(KEY_SOUNT, false);
         ckbSound.setChecked(ckbCheckSound);
         boolean ckbViReciver = sharedPreferences.getBoolean(KEY_VIBRATION, false);
         ckbVibration.setChecked(ckbViReciver);
     }
+
     // fix lỗi
     /*@Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -223,9 +224,9 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         }
         editor.commit();
     }*/
-    private void resumeDistaninValues(){
+    private void resumeDistaninValues() {
         SharedPreferences shareDistance = getActivity().getSharedPreferences(DistanceInFragment.KEY_SAVING_DISTANCEIN, Activity.MODE_PRIVATE);
-        String dt = shareDistance.getString(DistanceInFragment.KEY_TOTAL_VALUES,"");
+        String dt = shareDistance.getString(DistanceInFragment.KEY_TOTAL_VALUES, "");
         txtSetDistanceReport.setText(dt);
     }
 }

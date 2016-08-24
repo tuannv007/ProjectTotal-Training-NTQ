@@ -1,25 +1,18 @@
 package myadapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.project1final.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import my.item.ItemSearchFriendListview;
-import toantk.entities.User;
 
 /**
  * Created by admin on 7/29/2016.
@@ -80,7 +73,7 @@ public class ChatContentAdapter extends BaseAdapter {
         }
         // Using picasso load image
         user.User positionItem = arrayList.get(position);
-        Picasso.with(mContext).load(R.drawable.ic_menu_meetpeople).resize(250,250).into(viewHolder.imvAvatar);
+        Picasso.with(mContext).load(R.drawable.ic_menu_meetpeople).resize(250, 250).into(viewHolder.imvAvatar);
         // Using Glide load image
 
       /*  Glide.with(mContext).load(arrayList.get(position).getAva_id())

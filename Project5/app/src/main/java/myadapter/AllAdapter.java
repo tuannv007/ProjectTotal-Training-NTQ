@@ -45,9 +45,10 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.ViewHolderAll> {
         holder.price.setText(itemPosition.getNameGift());
     }
 
-    class ViewHolderAll extends RecyclerView.ViewHolder  {
+    class ViewHolderAll extends RecyclerView.ViewHolder {
         private TextView price;
         private ImageView imvImage;
+
         public ViewHolderAll(View itemView) {
             super(itemView);
             price = (TextView) itemView.findViewById(R.id.txt_all_text);

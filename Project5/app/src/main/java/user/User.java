@@ -1,18 +1,16 @@
 package user;
 
-import java.util.Date;
-
 /**
  * Created by admin on 8/10/2016.
  */
 public class User {
-    private String email,frd_id,ava_id,last_msg,is_own,sent_time,unread_num,longs,lat,distance,msg_type;
+    private String email, frd_id, ava_id, last_msg, is_own, sent_time, unread_num, longs, lat, distance, msg_type;
     private String password;
     private String username;
     private String notify_token;
     private int avatar;
     private String birthday;
-    private int gender,nameShowme,nameInterred,nameDistance,lower_age,upper_age;
+    private int gender, nameShowme, nameInterred, nameDistance, lower_age, upper_age;
     private boolean isOnline;
     private String token;
 
@@ -139,6 +137,7 @@ public class User {
         this.username = username;
 
     }
+
     public int getAvatar() {
         return avatar;
     }
@@ -146,6 +145,7 @@ public class User {
     public void setAvatar(int avatar) {
         this.avatar = avatar;
     }
+
     public String getNotify_token() {
         return notify_token;
     }

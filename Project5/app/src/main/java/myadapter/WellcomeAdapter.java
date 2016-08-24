@@ -14,10 +14,10 @@ import com.example.admin.project1final.R;
  * Created by admin on 7/27/2016.
  */
 public class WellcomeAdapter extends PagerAdapter {
-    private int image[] ;
+    private int image[];
     private LayoutInflater mLayoutInflater;
 
-    public WellcomeAdapter(Context mContext,int[] image) {
+    public WellcomeAdapter(Context mContext, int[] image) {
         this.image = image;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

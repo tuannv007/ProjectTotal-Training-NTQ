@@ -53,6 +53,7 @@ public class RequestHandler {
             }
         });
     }
+
     public interface RequestListener {
         public void onSuccess(int statusCode, Header[] headers, byte[] response);
 

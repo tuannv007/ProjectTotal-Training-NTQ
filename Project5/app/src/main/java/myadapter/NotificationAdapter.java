@@ -1,6 +1,5 @@
 package myadapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater mInflater = LayoutInflater.from(parent.getContext());
-       View itemView= mInflater.inflate(R.layout.item_notification,parent,false);
+        View itemView = mInflater.inflate(R.layout.item_notification, parent, false);
         return new RecyclerViewHolder(itemView);
     }
 
@@ -48,8 +47,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imvImages,imvLocation,imvTime,imvChange;
-        private TextView txtTextMain,txtHere,txtTime;
+        private ImageView imvImages, imvLocation, imvTime, imvChange;
+        private TextView txtTextMain, txtHere, txtTime;
+
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             imvChange = (ImageView) itemView.findViewById(R.id.imv_noti_chage);

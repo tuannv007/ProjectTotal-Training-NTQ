@@ -62,7 +62,7 @@ public class SearchFriendAdapterListview extends BaseAdapter {
             viewHolder.txtNumberNotification = (TextView) view.findViewById(R.id.txt_number_notification_list);
             view.setTag(viewHolder);
         } else {
-           viewHolder = (ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.imvAvata.setImageResource(arrItem.get(position).getAvata());
         viewHolder.imvLocator.setImageResource(R.drawable.ic_fragment_share_buzz_location);
@@ -74,19 +74,19 @@ public class SearchFriendAdapterListview extends BaseAdapter {
         viewHolder.txtStatus.setText(arrItem.get(position).getStatus());
         viewHolder.imvNotificationList.setImageResource(arrItem.get(position).getImvNotification());
         viewHolder.txtNumberNotification.setText(arrItem.get(position).getTxtNumberNotification());
-        if (viewHolder.txtStatus.getText().toString().equals("online")){
+        if (viewHolder.txtStatus.getText().toString().equals("online")) {
             viewHolder.txtStatus.setTextColor(Color.BLUE);
         }
-        if (viewHolder.txtNumberNotification.getText().toString().isEmpty()){
+        if (viewHolder.txtNumberNotification.getText().toString().isEmpty()) {
             viewHolder.imvNotificationList.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             viewHolder.imvNotificationList.setVisibility(View.VISIBLE);
         }
         return view;
     }
 
     class ViewHolder {
-        private ImageView imvAvata, imvPhai, imvLocator,imvNotificationList;
-        private TextView txtName, txtContent, txtAge, txtDistance, txtStatus,txtNumberNotification;
+        private ImageView imvAvata, imvPhai, imvLocator, imvNotificationList;
+        private TextView txtName, txtContent, txtAge, txtDistance, txtStatus, txtNumberNotification;
     }
 }

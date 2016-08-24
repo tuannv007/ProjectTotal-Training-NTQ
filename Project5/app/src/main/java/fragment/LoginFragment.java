@@ -157,9 +157,9 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
         String password = edtPassword.getText().toString();
 
         if (email.isEmpty()) {
-            showMessage(R.string.emailNotEmpty+"");
+            showMessage(R.string.emailNotEmpty + "");
         } else if (password.isEmpty()) {
-            showMessage(R.string.passwordNotEmpty+"");
+            showMessage(R.string.passwordNotEmpty + "");
         } else {
             user = new User();
             user.setEmail(emailRecever);
@@ -174,7 +174,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
 
     private void showProgressbar() {
         dialog = new ProgressDialog(getActivity());
-        dialog.setMessage(R.string.loading+"");
+        dialog.setMessage(R.string.loading + "");
         dialog.show();
     }
 
@@ -222,15 +222,15 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private void showErrorLogin(String s) {
         showError(s);
         if (s.equalsIgnoreCase(error_02)) {
-            showMessage(R.string.WRONG_DATA_FORMAT +"");
+            showMessage(R.string.WRONG_DATA_FORMAT + "");
         } else if (s.equalsIgnoreCase(error_10)) {
-            showMessage(R.string.EMAIL_NOT_FOUND+"");
+            showMessage(R.string.EMAIL_NOT_FOUND + "");
         } else if (s.equalsIgnoreCase(error_20)) {
-            showMessage(R.string.INCORRECT_PASSWORD+"");
+            showMessage(R.string.INCORRECT_PASSWORD + "");
         } else if (s.equalsIgnoreCase(error_81)) {
-            showMessage(R.string. LOCKED_USER+"");
+            showMessage(R.string.LOCKED_USER + "");
         } else {
-            showMessage(R.string.LoginSuccessfully+"");
+            showMessage(R.string.LoginSuccessfully + "");
             changeFragment(new MainFragment(), NameFragment.mainFragmnet);
         }
 

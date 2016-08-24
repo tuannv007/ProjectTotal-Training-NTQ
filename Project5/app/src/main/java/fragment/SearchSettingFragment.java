@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,10 +15,8 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -27,14 +24,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import key.api.KeyParam;
-import key.api.listconversation.KeyListConversation;
 import user.User;
 
 import static com.example.admin.project1final.R.id.txt_of_ethnicity;
@@ -63,7 +58,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
     private String test;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private String isWord = "word";
+    private String isWorld = "world";
     private String isNear = "near";
     private String isCity = "city";
     private String isState = "state";
@@ -152,7 +147,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
                 resetBackdround(btnCity, R.drawable.search_setting_btn_city);
                 resetBackdround(btnNear, R.drawable.search_setting_btn_near);
                 resetBackdround(btnState, R.drawable.search_setting_btn_state);
-                arrayInteres.add(isWord);
+                arrayInteres.add(isWorld);
                 break;
             case R.id.btn_near:
                 changeBackgroundSearchSetting(btnNear, R.drawable.search_setting_btn_near_checked);
@@ -310,10 +305,11 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
         String getNameInter = sharedPreferences.getString(KEY_INTER, "");
         String getName = sharedPreferences.getString(KEY_NAME, "");
         String getNameShowMe = sharedPreferences.getString(KEY_SHOWME, "");
+
         if (getName.equalsIgnoreCase(isNear)) {
             changeBackgroundSearchSetting(btnNear, R.drawable.search_setting_btn_near_checked);
 
-        } else if (getName.equalsIgnoreCase(isWord)) {
+        } else if (getName.equalsIgnoreCase(isWorld)) {
             changeBackgroundSearchSetting(btnWord, R.drawable.search_setting_btn_world_checked);
 
         } else if (getName.equalsIgnoreCase(isCity)) {
@@ -323,6 +319,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
         } else if (getName.equalsIgnoreCase(isCountry)) {
             changeBackgroundSearchSetting(btnCountry, R.drawable.search_setting_btn_country_checked);
         }
+
         if (getNameInter.equalsIgnoreCase(isInterredOne)) {
             changeBackgroundSearchSetting(btnInterredted1, R.drawable.search_setting_btn_near_checked);
         } else if (getNameInter.equalsIgnoreCase(isInterredTwo)) {
@@ -330,6 +327,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
         } else if (getNameInter.equalsIgnoreCase(isInterredThree)) {
             changeBackgroundSearchSetting(btnInterredted3, R.drawable.search_setting_btn_near_checked);
         }
+
         if (getNameShowMe.equalsIgnoreCase(isShowMe1)) {
             changeBackgroundSearchSetting(btnShome1, R.drawable.search_setting_btn_city_checked);
         } else if (getNameShowMe.equalsIgnoreCase(isShowMe2)) {
@@ -375,7 +373,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
             user.setNameDistance(2);
         } else if (nameDistance.equalsIgnoreCase(isCountry)) {
             user.setNameDistance(3);
-        } else if (nameDistance.equalsIgnoreCase(isWord)) {
+        } else if (nameDistance.equalsIgnoreCase(isWorld)) {
             user.setNameDistance(4);
         }
     }

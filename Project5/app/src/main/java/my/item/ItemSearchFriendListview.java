@@ -1,7 +1,5 @@
 package my.item;
 
-import android.widget.ImageView;
-
 /**
  * Created by admin on 7/27/2016.
  */
@@ -13,7 +11,6 @@ public class ItemSearchFriendListview {
     private int imvDelete;
     private int imvNotification;
     private String txtNumberNotification;
-
 
 
     private boolean isOnline;
@@ -53,30 +50,39 @@ public class ItemSearchFriendListview {
     public String getTxtNumberNotification() {
         return txtNumberNotification;
     }
+
     public String getTxtContentLocation() {
         return txtContentLocation;
     }
+
     public String getTxtContentRecever() {
         return txtContentRecever;
     }
+
     public String getTxtContentSend() {
         return txtContentSend;
     }
+
     public String getTxtTime() {
         return txtTime;
     }
+
     public int getAvata() {
         return Avata;
     }
+
     public String getStatus() {
         return status;
     }
+
     public int getImvStatus() {
         return imvStatus;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }

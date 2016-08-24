@@ -6,7 +6,7 @@ package my.item;
 public class ItemAution {
     private int imvAvatar, imvStatus;
     private String txtName;
-    private boolean isOnline=true;
+    private boolean isOnline = true;
 
     public ItemAution(int imvAvatar, String txtName, boolean isOnline) {
         this.imvAvatar = imvAvatar;

@@ -18,7 +18,7 @@ import myadapter.WellcomeAdapter;
 /**
  * Created by admin on 7/27/2016.
  */
-public class WellcomeFragment extends BaseFragment implements View.OnClickListener {
+public class WelcomeFragment extends BaseFragment implements View.OnClickListener {
     int[] image = {R.drawable.splash_intro1, R.drawable.bg_image2, R.drawable.bg_images};
 
 
@@ -55,7 +55,7 @@ public class WellcomeFragment extends BaseFragment implements View.OnClickListen
                 changeFragment(new LoginFragment(), NameFragment.loginFragment);
                 break;
             case R.id.btn_sign_up:
-                changeFragment(new SignUpFragment(),NameFragment.signupFragment);
+                changeFragment(new SignUpFragment(), NameFragment.signupFragment);
                 break;
         }
     }

@@ -50,7 +50,7 @@ public class AutionFragment extends BaseFragment implements View.OnClickListener
             @Override
             public int getSpanSize(int position) {
                 if (position == 0 || position == 1) return 10;
-                if (position>=2 || position<=5)
+                if (position >= 2 || position <= 5)
                     return 5;
 
                 return 4;
@@ -64,6 +64,7 @@ public class AutionFragment extends BaseFragment implements View.OnClickListener
         FrameLayout frmMessage = (FrameLayout) view.findViewById(R.id.frm_chat_message_aution);
        /* frmMessage.setOnClickListener(this);
         imvOpenDrawer.setOnClickListener(this);*/
+
     }
 
     private void initData() {

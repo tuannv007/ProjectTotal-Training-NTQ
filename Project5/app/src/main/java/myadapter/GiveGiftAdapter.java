@@ -1,14 +1,10 @@
 package myadapter;
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.admin.project1final.R;
 
@@ -21,6 +17,7 @@ import my.item.ItemGiveGift;
  */
 public class GiveGiftAdapter extends RecyclerView.Adapter<GiveGiftAdapter.ViewHolderGift> {
     private OnItemClickListener mOnItemClickListener;
+
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
@@ -28,6 +25,7 @@ public class GiveGiftAdapter extends RecyclerView.Adapter<GiveGiftAdapter.ViewHo
     public void setmOnItemClickListener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
     }
+
     private ArrayList<ItemGiveGift> arrayList = new ArrayList<>();
 
     public GiveGiftAdapter(ArrayList<ItemGiveGift> arrayList) {
@@ -64,7 +62,7 @@ public class GiveGiftAdapter extends RecyclerView.Adapter<GiveGiftAdapter.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mOnItemClickListener.onItemClick(view,getPosition());
+                    mOnItemClickListener.onItemClick(view, getPosition());
                 }
             });
             nameGift = (TextView) itemView.findViewById(R.id.txt_give_gift);

@@ -23,7 +23,7 @@ public class DistanceInFragment extends BaseFragment implements View.OnClickList
     public static final String KEY_TOTAL_VALUES = "key_total_values";
     public static String name;
     private Button btnBack;
-    private RadioButton rdbMiles,rdbKilomets;
+    private RadioButton rdbMiles, rdbKilomets;
     private RadioGroup group;
     public static final String KEY_SAVING_DISTANCEIN = "key_saving_distancein";
     private SharedPreferences sharedPreferences;
@@ -71,7 +71,7 @@ public class DistanceInFragment extends BaseFragment implements View.OnClickList
         super.onResume();
         boolean rdbChooseMiles = sharedPreferences.getBoolean(KEY_MILES, false);
         rdbMiles.setChecked(rdbChooseMiles);
-        boolean rdbChooseKilomet =sharedPreferences.getBoolean(KEY_KILOMET,false);
+        boolean rdbChooseKilomet = sharedPreferences.getBoolean(KEY_KILOMET, false);
         rdbKilomets.setChecked(rdbChooseKilomet);
     }
 

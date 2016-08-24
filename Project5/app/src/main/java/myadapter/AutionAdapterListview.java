@@ -75,7 +75,7 @@ public class AutionAdapterListview extends BaseAdapter {
             viewHolder = new ViewHolder();
             switch (type) {
                 case TYPE_TWO:
-                    view = mInflater.inflate(R.layout.item_list_two_aution, viewGroup,false);
+                    view = mInflater.inflate(R.layout.item_list_two_aution, viewGroup, false);
                     viewHolder.imvAvatar = (ImageView) view.findViewById(R.id.imv_avatar_au1);
                     viewHolder.imvStatus = (ImageView) view.findViewById(R.id.imv_point_au1);
                     viewHolder.txtName = (TextView) view.findViewById(R.id.txt_au1);
@@ -110,7 +110,7 @@ public class AutionAdapterListview extends BaseAdapter {
                     view.setTag(viewHolder);
                     break;
                 case TYPE_FIVE:
-                    view = mInflater.inflate(R.layout.item_list_five_aution, viewGroup,false);
+                    view = mInflater.inflate(R.layout.item_list_five_aution, viewGroup, false);
                     viewHolder.imvAvatar = (ImageView) view.findViewById(R.id.imv_avatar_five_au1);
                     viewHolder.imvStatus = (ImageView) view.findViewById(R.id.imv_point_five_au1);
                     viewHolder.txtName = (TextView) view.findViewById(R.id.txt_five_au1);
@@ -144,7 +144,7 @@ public class AutionAdapterListview extends BaseAdapter {
         }
 
         if (type == TYPE_TWO) {
-            if (arrViewRows!=null && arrViewRows.get(position).getArrayList()!=null){
+            if (arrViewRows != null && arrViewRows.get(position).getArrayList() != null) {
                 viewHolder.imvAvatar.setImageResource(arrViewRows.get(position).getArrayList().get(0).getImvAvatar());
                 if (arrViewRows.get(position).getArrayList().get(0).isOnline()) {
                     viewHolder.imvStatus.setImageResource(R.drawable.ic_status_online_grid_view);
@@ -215,6 +215,7 @@ public class AutionAdapterListview extends BaseAdapter {
 
         return view;
     }
+
     private class ViewHolder {
         private ImageView imvAvatar, imvStatus, imvAvatar2, imvStatus2, imvStatus3, imvStatus4, imvAvatar4, imvAvatar5, imvStatus5;
         private TextView txtName, txtName2, txtName3, txtName4, txtName5;

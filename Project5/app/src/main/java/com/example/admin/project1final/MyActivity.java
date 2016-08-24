@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import fragment.ChatFragment;
 import key.name.fragment.tag.NameFragment;
@@ -23,12 +22,14 @@ import key.name.fragment.tag.NameFragment;
  */
 public abstract class MyActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
-    void changeFragment(Fragment myFragment, String Tag){
-        getSupportFragmentManager().beginTransaction().replace(R.id.main,myFragment,Tag).addToBackStack(Tag).commit();
+
+    void changeFragment(Fragment myFragment, String Tag) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.main, myFragment, Tag).addToBackStack(Tag).commit();
     }
+
     public void setUpActionbarAuction(String contentText) {
-        drawerLayout=MainActivity.drawerLayout;
-        if (getSupportActionBar()==null) return;
+        drawerLayout = MainActivity.drawerLayout;
+        if (getSupportActionBar() == null) return;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.menu_drawer);
@@ -39,7 +40,7 @@ public abstract class MyActivity extends AppCompatActivity {
         imvOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             drawerLayout.openDrawer(Gravity.LEFT);
+                drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
         TextView txtTitle = (TextView) view.findViewById(R.id.txt_title);
@@ -52,14 +53,15 @@ public abstract class MyActivity extends AppCompatActivity {
         });
         txtTitle.setText(contentText);
     }
+
     public void setUpRecenreport(String contentText) {
-        drawerLayout=MainActivity.drawerLayout;
-        if (getSupportActionBar()==null) return;
+        drawerLayout = MainActivity.drawerLayout;
+        if (getSupportActionBar() == null) return;
         getSupportActionBar().setDisplayShowHomeEnabled(false);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        ActionBar ab =getSupportActionBar();
-                ab.setCustomView(R.layout.header_setting_layout);
+        ActionBar ab = getSupportActionBar();
+        ab.setCustomView(R.layout.header_setting_layout);
         View v = LayoutInflater
                 .from(ab.getThemedContext())
                 .inflate(R.layout.header_setting_layout, null);
@@ -67,7 +69,7 @@ public abstract class MyActivity extends AppCompatActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT);
-        ab.setCustomView(v,params);
+        ab.setCustomView(v, params);
         Toolbar parent = (Toolbar) v.getParent();
         parent.setContentInsetsAbsolute(0, 0);
         imvOpen.setOnClickListener(new View.OnClickListener() {
@@ -85,9 +87,10 @@ public abstract class MyActivity extends AppCompatActivity {
         });
         mTitleTextView.setText(contentText);
     }
+
     public void setUpLoginActionbar(String contentText) {
-        drawerLayout=MainActivity.drawerLayout;
-        if (getSupportActionBar()==null) return;
+        drawerLayout = MainActivity.drawerLayout;
+        if (getSupportActionBar() == null) return;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.header_layout);
@@ -104,8 +107,9 @@ public abstract class MyActivity extends AppCompatActivity {
         parent.setContentInsetsAbsolute(0, 0);
         mTitleTextView.setText(contentText);
     }
+
     @Override
-    public boolean onPrepareOptionsMenu (Menu menu) {
+    public boolean onPrepareOptionsMenu(Menu menu) {
         return false;
     }
 }

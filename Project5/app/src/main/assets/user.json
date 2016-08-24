@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "frd_id": "57b27a20e4b04a7f65f3bf9a",
+      "frd_name": "NguyenTuan",
+      "gender": "1",
+      "is_online": "true",
+      "ava_id": "https://i.imgsafe.org/2e0f662e4c.png",
+      "last_msg": "Sidney Samson ",
+      "is_own": "true",
+      "sent_time": "2h",
+      "unread_num": "Sidney Samson not share",
+      "long": "0",
+      "lat": "0",
+      "dist": "20 km",
+      "msg_type": "Sidney"
+    },
+    {
+      "frd_id": "57b27a20e4b04a7f65f3bf9a",
+      "frd_name": "NguyenTuan",
+      "gender": "1",
+      "is_online": "false",
+      "ava_id": "https://i.imgsafe.org/2e163e118a.png",
+      "last_msg": "Sidney Samson ",
+      "is_own": "true",
+      "sent_time": "3h",
+      "unread_num": "Sidney Samson not share",
+      "long": "0",
+      "lat": "0",
+      "dist": "10 km",
+      "msg_type": "Sidney"
+    },
+    {
+      "frd_id": "57b27a20e4b04a7f65f3bf9a",
+      "frd_name": "NguyenTuan",
+      "gender": "1",
+      "is_online": "false",
+      "ava_id": "https://i.imgsafe.org/2e163e118a.png",
+      "last_msg": "Sidney Samson ",
+      "is_own": "true",
+      "sent_time": "3h",
+      "unread_num": "Sidney Samson not share",
+      "long": "0",
+      "lat": "0",
+      "dist": "10 km",
+      "msg_type": "Sidney"
+    },
+    {
+      "frd_id": "57b27a20e4b04a7f65f3bf9a",
+      "frd_name": "NguyenTuan",
+      "gender": "1",
+      "is_online": "false",
+      "ava_id": "https://i.imgsafe.org/2e163e118a.png",
+      "last_msg": "Sidney Samson ",
+      "is_own": "true",
+      "sent_time": "3h",
+      "unread_num": "Sidney Samson not share",
+      "long": "0",
+      "lat": "0",
+      "dist": "10 km",
+      "msg_type": "Sidney"
+    }
+  ]
+}

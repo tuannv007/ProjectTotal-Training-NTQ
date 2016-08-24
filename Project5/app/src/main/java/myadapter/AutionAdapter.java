@@ -12,7 +12,6 @@ import com.example.admin.project1final.R;
 import java.util.ArrayList;
 
 import my.item.ItemAution;
-import toantk.entities.User;
 
 /**
  * Created by admin on 8/2/2016.
@@ -40,7 +39,7 @@ public class AutionAdapter extends RecyclerView.Adapter<AutionAdapter.ViewHolder
             holder.imvAvatar.getLayoutParams().height = 500;
 
         }
-        if (position >=5 && position<=5) {
+        if (position >= 5 && position <= 5) {
             holder.imvAvatar.getLayoutParams().height = 300;
         }
         if (position > 5) {
@@ -64,6 +63,7 @@ public class AutionAdapter extends RecyclerView.Adapter<AutionAdapter.ViewHolder
     public class ViewHolderAution extends RecyclerView.ViewHolder {
         public ImageView imvAvatar, imvStatus;
         public TextView txtName;
+
         public ViewHolderAution(View itemView) {
             super(itemView);
             imvAvatar = (ImageView) itemView.findViewById(R.id.imv_avatar_au1);

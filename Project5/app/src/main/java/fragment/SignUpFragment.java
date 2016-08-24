@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,40 +17,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.math.BigInteger;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
 
-import cz.msebera.android.httpclient.Header;
 import key.api.BaseApiFragment;
 import key.api.KeyParam;
-import key.api.SignUp;
 import key.name.fragment.tag.NameFragment;
 import user.User;
 
@@ -102,6 +85,7 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
     }
 
     public boolean myClickHandler() {
+
         ConnectivityManager connMgr = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -111,6 +95,8 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
             // display error
             return false;
         }
+
+
     }
 
     private void configDialog() {
@@ -223,6 +209,7 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
         object.put(KeyParam.KeyApiGender, user.getGender());
         RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
         String mUrl = KeyParam.mUrl;
+
         JsonObjectRequest request = new JsonObjectRequest(mUrl, new JSONObject(object),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -241,16 +228,18 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
 
     }
 
+    //FIXME should override method showError()
     private void showErrorSignUp(String s) {
         showError(s);
+
         if (s.equalsIgnoreCase(error_11)) {
-            showMessage(R.string.INVALID_EMAIL+"");
+            showMessage(R.string.INVALID_EMAIL);
         } else if (s.equalsIgnoreCase(error_12)) {
-            showMessage(R.string.EMAIL_REGISTERED+"");
+            showMessage(R.string.EMAIL_REGISTERED);
         } else if (s.equalsIgnoreCase(error_14)) {
-            showMessage(R.string.INVALID_USER_NAME+"");
+            showMessage(R.string.INVALID_USER_NAME);
         } else if (s.equalsIgnoreCase(error_21)) {
-            showMessage(R.string.INVALID_PASSWORD+"");
+            showMessage(R.string.INVALID_PASSWORD);
         } else {
             showMessage("Register SuccessFully");
             Bundle bundle = new Bundle();

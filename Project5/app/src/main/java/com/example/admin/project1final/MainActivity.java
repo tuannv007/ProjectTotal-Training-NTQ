@@ -3,7 +3,6 @@ package com.example.admin.project1final;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,19 +13,17 @@ import fragment.EditProfileFragment;
 import fragment.GiveGiftFragment;
 import fragment.LoginFragment;
 import fragment.MainFragment;
-import fragment.NotificationProject2Fragment;
 import fragment.NotificationsFragment;
 import fragment.PointFragment;
-import fragment.SearchFriendFragment;
 import fragment.SearchSettingFragment;
 import fragment.SettingFragment;
-import fragment.WellcomeFragment;
+import fragment.WelcomeFragment;
 import key.name.fragment.tag.NameFragment;
 
 public class MainActivity extends MyActivity implements View.OnClickListener, LoginFragment.pushToken {
     public static DrawerLayout drawerLayout;
     private String getToken;
-    public static  String KEY_TOKEN = "key_token";
+    public static String KEY_TOKEN = "key_token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +38,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
     }
 
     private void showWellCome() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main, new WellcomeFragment(), NameFragment.wellcomeFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main, new WelcomeFragment(), NameFragment.wellcomeFragment).commit();
         closeNavigation();
 
     }

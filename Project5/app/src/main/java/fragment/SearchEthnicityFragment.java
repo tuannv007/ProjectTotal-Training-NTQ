@@ -44,7 +44,7 @@ public class SearchEthnicityFragment extends BaseFragment implements CompoundBut
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-        ((MainActivity)getActivity()).hideActionbar();
+        ((MainActivity) getActivity()).hideActionbar();
     }
 
     private void initView(View view) {

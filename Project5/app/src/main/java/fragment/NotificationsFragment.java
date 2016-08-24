@@ -23,7 +23,7 @@ public class NotificationsFragment extends BaseFragment implements View.OnClickL
     private CheckBox ckbBuzz, ckbSomeOne, ckbAlerts;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private String KEY_NOTIFICATION="key_notification";
+    private String KEY_NOTIFICATION = "key_notification";
 
     @Nullable
     @Override
@@ -57,13 +57,13 @@ public class NotificationsFragment extends BaseFragment implements View.OnClickL
                 openDrawerLayout();
                 break;
             case R.id.ckb_alerts:
-               saveToSharePre(ckbAlerts,KEY_ALERT);
+                saveToSharePre(ckbAlerts, KEY_ALERT);
                 break;
             case R.id.ckb_buzz_notification:
-                saveToSharePre(ckbBuzz,KEY_BUZZ);
+                saveToSharePre(ckbBuzz, KEY_BUZZ);
                 break;
-            case R.id.ckb_some_one :
-                saveToSharePre(ckbSomeOne,KEY_SOMEONE);
+            case R.id.ckb_some_one:
+                saveToSharePre(ckbSomeOne, KEY_SOMEONE);
                 break;
         }
     }
@@ -74,16 +74,17 @@ public class NotificationsFragment extends BaseFragment implements View.OnClickL
         restoreDataFromSharePre();
     }
 
-    private void saveToSharePre(CheckBox checked, String key){
-        editor=sharedPreferences.edit();
-        if (checked.isChecked()){
-            editor.putBoolean(key,true);
-        }else{
-            editor.putBoolean(key,false);
+    private void saveToSharePre(CheckBox checked, String key) {
+        editor = sharedPreferences.edit();
+        if (checked.isChecked()) {
+            editor.putBoolean(key, true);
+        } else {
+            editor.putBoolean(key, false);
         }
         editor.apply();
     }
-    private void restoreDataFromSharePre(){
+
+    private void restoreDataFromSharePre() {
         boolean ckbRestoreBuzz = sharedPreferences.getBoolean(KEY_BUZZ, false);
         ckbBuzz.setChecked(ckbRestoreBuzz);
         boolean ckbRestoreAlert = sharedPreferences.getBoolean(KEY_ALERT, false);

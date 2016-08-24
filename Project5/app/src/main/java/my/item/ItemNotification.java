@@ -1,13 +1,11 @@
 package my.item;
 
-import android.widget.ImageView;
-
 /**
  * Created by admin on 8/2/2016.
  */
 public class ItemNotification {
-    private int imvImages,imvLocation,imvTime,imvChange;
-    private String txtTextMain,txtHere,txtTime;
+    private int imvImages, imvLocation, imvTime, imvChange;
+    private String txtTextMain, txtHere, txtTime;
 
     public ItemNotification(String txtHere, String txtTime) {
         this.txtHere = txtHere;

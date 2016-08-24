@@ -43,8 +43,8 @@ public class GiveGiftFragment extends BaseFragment implements View.OnClickListen
         mAdapter.setmOnItemClickListener(new GiveGiftAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                changeFragment(new AllFragment(),NameFragment.allFragment);
-                Toast.makeText(getActivity(),"clicl",Toast.LENGTH_LONG).show();
+                changeFragment(new AllFragment(), NameFragment.allFragment);
+                Toast.makeText(getActivity(), "clicl", Toast.LENGTH_LONG).show();
             }
         });
         recyclerView.setAdapter(mAdapter);
@@ -53,10 +53,10 @@ public class GiveGiftFragment extends BaseFragment implements View.OnClickListen
     private void initView(View view) {
         ImageView imvBack = (ImageView) view.findViewById(R.id.imv_back_give_gift);
         FrameLayout frmChatMessage = (FrameLayout) view.findViewById(R.id.frm_chat_message_give_gift);
-         recyclerView = (RecyclerView) view.findViewById(R.id.rcl_give_gift);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rcl_give_gift);
         imvBack.setOnClickListener(this);
         frmChatMessage.setOnClickListener(this);
-        if (arrGiveGift==null) return;
+        if (arrGiveGift == null) return;
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -80,12 +80,12 @@ public class GiveGiftFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).hideActionbar();
+        ((MainActivity) getActivity()).hideActionbar();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imv_back_give_gift:
                 goBack();
                 break;

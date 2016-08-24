@@ -1,6 +1,5 @@
 package fragment;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,12 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import key.api.listconversation.KeyListConversation;
-import my.item.ItemSearchFriendListview;
 import myadapter.ChatContentAdapter;
 import user.User;
 
@@ -58,6 +54,7 @@ public class ChatFragment extends BaseFragment implements View.OnClickListener {
         TextView textView;
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -164,7 +161,7 @@ public class ChatFragment extends BaseFragment implements View.OnClickListener {
 
     private String readJsonInFile() {
         try {
-            InputStream is = getActivity().getAssets().open("user.txt");
+            InputStream is = getActivity().getAssets().open("user.json");
             int size = is.available();
             byte data[] = new byte[size];
             is.read(data);

@@ -16,13 +16,13 @@ import com.example.admin.project1final.R;
  * Created by admin on 7/8/2016.
  * fragment chính thực hiện các thao tác với drawer layout, từ đây có thể di chuyển đến các fragment khác
  */
-public class MainFragment extends BaseFragment{
+public class MainFragment extends BaseFragment {
     private DrawerLayout drawerLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment_layout,container,false);
+        return inflater.inflate(R.layout.main_fragment_layout, container, false);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MainFragment extends BaseFragment{
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         drawerLayout.closeDrawer(Gravity.LEFT);
         ImageView imageOpenDrawer = (ImageView) view.findViewById(R.id.imvOpenDrawer);
-        ((MainActivity)getActivity()).showActionbarRecentReport();
+        ((MainActivity) getActivity()).showActionbarRecentReport();
     }
 
     @Override

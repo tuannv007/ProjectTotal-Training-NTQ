@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,20 +17,21 @@ import com.example.admin.project1final.R;
 /**
  * Created by admin on 7/19/2016.
  */
-public class EditProfileFragment extends BaseFragment implements View.OnClickListener{
-    private static final int REQUES_CODE =4 ;
-    private static final String KEY_SAVING_EDITPROFILE ="key_saving_editprofile" ;
-    private static final String KEY_INFOR ="key_infor" ;
+public class EditProfileFragment extends BaseFragment implements View.OnClickListener {
+    private static final int REQUES_CODE = 4;
+    private static final String KEY_SAVING_EDITPROFILE = "key_saving_editprofile";
+    private static final String KEY_INFOR = "key_infor";
     private RelativeLayout rltRelationship;
-    private FragmentManager manager ;
+    private FragmentManager manager;
     private View btnCancle;
     private TextView txtStatus;
     private String values;
     private SharedPreferences sharedPreferences;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.editprofile_layout,container,false);
+        return inflater.inflate(R.layout.editprofile_layout, container, false);
     }
 
     @Override
@@ -48,14 +48,14 @@ public class EditProfileFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.rlt_relationship :
-               MyDialogShowRelationship dialogShowRelationship = new MyDialogShowRelationship();
-                dialogShowRelationship.setTargetFragment(this,REQUES_CODE);
-                dialogShowRelationship.show(manager,"");
+        switch (v.getId()) {
+            case R.id.rlt_relationship:
+                MyDialogShowRelationship dialogShowRelationship = new MyDialogShowRelationship();
+                dialogShowRelationship.setTargetFragment(this, REQUES_CODE);
+                dialogShowRelationship.show(manager, "");
                 this.onPause();
                 break;
-            case R.id.btnCancelEditProfile :
+            case R.id.btnCancelEditProfile:
                 goBack();
                 openDrawerLayout();
                 break;
@@ -65,8 +65,8 @@ public class EditProfileFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == EditProfileFragment.REQUES_CODE){
-             values = data.getStringExtra(MyDialogShowRelationship.KEY_DIALOG);
+        if (requestCode == EditProfileFragment.REQUES_CODE) {
+            values = data.getStringExtra(MyDialogShowRelationship.KEY_DIALOG);
             txtStatus.setText(values);
         }
     }
@@ -75,7 +75,7 @@ public class EditProfileFragment extends BaseFragment implements View.OnClickLis
     public void onResume() {
         super.onResume();
         restoreDataSharePreference();
-        ((MainActivity)getActivity()).hideActionbar();
+        ((MainActivity) getActivity()).hideActionbar();
     }
 
     @Override
@@ -85,14 +85,15 @@ public class EditProfileFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void saveDataBySharePreference() {
-         sharedPreferences = getActivity().getSharedPreferences(KEY_SAVING_EDITPROFILE, getActivity().MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(KEY_SAVING_EDITPROFILE, getActivity().MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (values!=null)
+        if (values != null)
             editor.putString(KEY_INFOR, values);
         editor.apply();
     }
+
     private void restoreDataSharePreference() {
-         sharedPreferences = getActivity().getSharedPreferences
+        sharedPreferences = getActivity().getSharedPreferences
                 (KEY_SAVING_EDITPROFILE, getActivity().MODE_PRIVATE);
         //lấy giá trị checked ra, nếu không thấy thì giá trị mặc định là false
         String dt = sharedPreferences.getString(KEY_INFOR, "");

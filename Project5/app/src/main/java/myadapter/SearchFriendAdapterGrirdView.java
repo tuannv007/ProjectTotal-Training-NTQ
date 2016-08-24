@@ -53,7 +53,7 @@ public class SearchFriendAdapterGrirdView extends ArrayAdapter {
         viewHolder.txtNumberNotification.setText(objectItem.getTxtNumberNotification());
         if (objectItem.getTxtNumberNotification().toString().isEmpty()) {
             viewHolder.imvNotification.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             viewHolder.imvNotification.setVisibility(View.VISIBLE);
         }
 

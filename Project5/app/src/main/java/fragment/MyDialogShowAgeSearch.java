@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.Toast;
 
 import com.example.admin.project1final.R;
 
@@ -20,7 +18,7 @@ import com.example.admin.project1final.R;
 public class MyDialogShowAgeSearch extends DialogFragment implements NumberPicker.OnValueChangeListener, View.OnClickListener {
     public static final String KEY_NEWVAL_AGE_ONE = "key_newval_age_one";
     public static final int REQUES_CODE_DIALOG_AGE = 3;
-    public static final String KEY_NEWVAL_AGE_TWO ="key_newval_age_two" ;
+    public static final String KEY_NEWVAL_AGE_TWO = "key_newval_age_two";
     private NumberPicker numberPicker1, numberPicker2;
     private Button btnCancel, btnOk;
 
