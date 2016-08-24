@@ -1,5 +1,6 @@
 package fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -54,6 +55,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private String password;
     private String emailRecever;
     private String passwordRecever;
+    private ProgressDialog dialog;
 
     @Nullable
     @Override
@@ -103,6 +105,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
+                showProgressbar();
                 loginUser();
                 break;
         }
@@ -174,10 +177,17 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
         }
     }
 
+    private void showProgressbar() {
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading");
+        dialog.show();
+    }
+
     private void postDataLogin() {
         HashMap<String, Object> object = new HashMap<>();
         String keyLogin = "login";
         String keyAndroid = "android";
+
         object.put(KeyParam.KeyApi, keyLogin);
         object.put(KeyParam.KeyApiEmail, user.getEmail());
         object.put(KeyParam.KeyApiPassword, md5(user.getPassword()));
@@ -185,13 +195,16 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
         object.put(KeyParam.KeyApiNotifyToken, "sjdks");
         object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
         object.put(KeyParam.KeyApiLoginTime, "20160223123412");
+
         RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
         String mUrl = KeyParam.mUrl;
+
         JsonObjectRequest request = new JsonObjectRequest(mUrl, new JSONObject(object),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("tag", response.toString());
+                        dialog.dismiss();
                         try {
                             JSONObject reJsonObject = response.getJSONObject("data");
                             token = reJsonObject.getString("token");

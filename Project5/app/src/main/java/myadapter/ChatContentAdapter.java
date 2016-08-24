@@ -1,6 +1,7 @@
 package myadapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.project1final.R;
 import com.squareup.picasso.Picasso;
 
@@ -75,12 +78,21 @@ public class ChatContentAdapter extends BaseAdapter {
 
 
         }
+        // Using picasso load image
         user.User positionItem = arrayList.get(position);
-        Picasso.with(mContext).load(arrayList.get(position).getAva_id()).into(viewHolder.imvAvatar);
+        Picasso.with(mContext).load(R.drawable.ic_menu_meetpeople).resize(250,250).into(viewHolder.imvAvatar);
+        // Using Glide load image
+
+      /*  Glide.with(mContext).load(arrayList.get(position).getAva_id())
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(viewHolder.imvAvatar);*/
         viewHolder.imvTime.setImageResource(R.drawable.ic_menu_item_time_range);
         viewHolder.imvLocation.setImageResource(R.drawable.ic_menu_item_distance);
         if (positionItem.isOnline()) {
             viewHolder.imvStatus.setImageResource(R.drawable.ic_status_online_grid_view);
+
         } else {
             viewHolder.imvStatus.setImageResource(R.drawable.ic_menu_item_offline);
         }
@@ -123,7 +135,5 @@ public class ChatContentAdapter extends BaseAdapter {
         private Button btnDelete;
         private ImageView imvAvatar, imvStatus, imvLocation, imvTime;
         private TextView txtContentReciver, txtContentSend, txtLocation, txtTime, txtName;
-
-
     }
 }
