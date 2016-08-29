@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:background="@color/colorHeader">
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/backround_button_back"/>
+
+    <TextView
+        android:id="@+id/txtContentHeader"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="@string/andG"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnForgot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_weight="0.7"
+        android:background="@drawable/backround_button_forgot"
+        android:text="@string/forgot"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+</LinearLayout>

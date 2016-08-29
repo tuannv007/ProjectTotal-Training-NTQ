@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorHeader">
+
+        <Button
+            android:id="@+id/btnCancelEditProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/backround_button_forgot"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtContentHeader"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="@string/editProfile"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnForgot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="6dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/backround_button_forgot"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/theBasic"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1.4"
+                android:background="@drawable/background_layout_setting_one"
+                android:orientation="vertical"
+                android:weightSum="7.1">
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/name"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtName"
+                        android:text="@string/q"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+                </RelativeLayout>
+
+                <View style="@style/viewLine"/>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtGender"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/gender"/>
+
+                    <TextView
+                        android:id="@+id/txtGen"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtGender"
+                        android:text="122"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+
+                    <View
+                        style="@style/viewLine"
+                        android:layout_below="@id/txtGen"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtAge"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/age"/>
+
+                    <TextView
+                        android:id="@+id/txtAg"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtAge"
+                        android:text="@string/ht"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+
+                    <View
+                        style="@style/viewLine"
+                        android:layout_below="@id/txtAg"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtLocation"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/location"/>
+
+                    <TextView
+                        android:id="@+id/txtLoca"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtLocation"
+                        android:text="@string/Hanoi"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+
+                    <View
+                        style="@style/viewLine"
+                        android:layout_below="@id/txtLoca"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtInterReadted"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/intereadtd"/>
+
+                    <TextView
+                        android:id="@+id/txtInter"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtInterReadted"
+                        android:text="122"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+
+                    <View
+                        style="@style/viewLine"
+                        android:layout_below="@id/txtInter"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtLokingFor"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/lookingFor"/>
+
+                    <TextView
+                        android:id="@+id/txtLoking"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtLokingFor"
+                        android:text="@string/askMe"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+
+                    <View
+                        style="@style/viewLine"
+                        android:layout_below="@id/txtLoking"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtAboutMe"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/aboutMe"/>
+
+                    <TextView
+                        android:id="@+id/txtAbout"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtAboutMe"
+                        android:text="@string/askMe"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/extended"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_layout_setting_one"
+                android:orientation="vertical"
+                android:weightSum="5">
+
+                <RelativeLayout
+                    android:id="@+id/rlt_relationship"
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtStatusEditProfile"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/relationship"/>
+
+                    <TextView
+                        android:id="@+id/txtStatus"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtStatusEditProfile"
+                        android:text="@string/askMe"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+                </RelativeLayout>
+
+                <View style="@style/viewLine"/>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtBodyType"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/bodyType"/>
+
+                    <TextView
+                        android:id="@+id/txtBody"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtBodyType"
+                        android:text="@string/askMe"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+                </RelativeLayout>
+
+                <View style="@style/viewLine"/>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtHeightEditProfile"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/height"/>
+
+                    <TextView
+                        android:id="@+id/txtHeight"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtHeightEditProfile"
+                        android:text="@string/askMe"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+                </RelativeLayout>
+
+                <View style="@style/viewLine"/>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtEthnicityEditProfile"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/ethnicity"/>
+
+                    <TextView
+                        android:id="@+id/txtEthnicity"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtEthnicityEditProfile"
+                        android:text="@string/askMe"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+                </RelativeLayout>
+
+                <View style="@style/viewLine"/>
+
+                <RelativeLayout
+                    style="@style/relativeLayoutEditProfile">
+
+                    <TextView
+                        android:id="@+id/txtEnteres"
+                        style="@style/textViewBigEditProfile"
+                        android:text="@string/intereadtd"/>
+
+                    <TextView
+                        android:id="@+id/txtEnter"
+                        style="@style/textViewSmallEditProfile"
+                        android:layout_below="@id/txtEnteres"
+                        android:text="@string/askMe"/>
+
+                    <ImageView style="@style/imageViewEditProfile"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="230dp">
+
+    <NumberPicker
+        android:id="@+id/numberPicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/numberPicker"
+        android:layout_toStartOf="@+id/numberPicker"
+        android:gravity="center"
+        android:orientation="vertical"/>
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="85dp"
+        android:layout_marginRight="85dp"
+        android:focusableInTouchMode="true"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/numberPicker2"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorBackground"
+            android:text="@string/cancel"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorBackground"
+            android:text="@string/ok"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+
+</RelativeLayout>

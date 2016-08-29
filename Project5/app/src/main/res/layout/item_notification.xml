@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_marginBottom="2dp"
+              android:background="@android:color/white"
+              android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imv_noti_images"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:src="@drawable/ic_look_at_me"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_noti_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.3"
+            android:gravity="bottom"
+            android:text="@string/confgurationNotifice"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/imv_noti_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_fragment_share_buzz_location"/>
+
+            <TextView
+                android:id="@+id/txt_noti_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/here"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:id="@+id/imv_noti_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginStart="3dp"
+                android:src="@drawable/ic_fragment_share_buzz_time"/>
+
+            <TextView
+                android:id="@+id/txt_noti_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/s19"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imv_noti_chage"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="0.2"
+        android:src="@drawable/edit_my_profile_arrow_right"/>
+</LinearLayout>

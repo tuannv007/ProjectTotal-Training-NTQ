@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/header_layout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="218dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/background_layout_setting_one">
+
+        <TextView
+            android:id="@+id/txtUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/updateToMyBuzz"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textBm"
+            android:textStyle="bold"/>
+
+        <CheckBox
+            android:id="@+id/ckb_buzz_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="7dp"
+            android:checked="false"/>
+
+        <View
+            android:id="@+id/viewLine3"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@+id/txtUpdate"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/txtAndGAlerts"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_below="@+id/viewLine3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/andGAlrets"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textBm"
+            android:textStyle="bold"/>
+
+        <CheckBox
+            android:id="@+id/ckb_alerts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ckb_buzz"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/ckb_buzz"
+            android:layout_below="@+id/viewLine3"
+            android:layout_marginTop="7dp"/>
+
+        <View
+            android:id="@+id/viewLine4"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@+id/txtAndGAlerts"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/txtChatMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/viewLine4"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/chatMessages"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textBm"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtAll"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@+id/txtChatMessages"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/all"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"/>
+
+        <View
+            android:id="@+id/viewLine5"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@+id/txtAll"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/txtSomeOnChecks"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_below="@+id/viewLine5"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/SomeOneChecksmeout"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textBm"
+            android:textStyle="bold"/>
+
+        <CheckBox
+            android:id="@+id/ckb_some_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/viewLine5"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="9dp"/>
+    </RelativeLayout>
+</LinearLayout>

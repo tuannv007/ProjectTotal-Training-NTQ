@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpg_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@drawable/background_indiacator"
+            android:padding="10dip"/>
+    </FrameLayout>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_sign_up"
+            style="@style/ButtonWellcome"
+            android:text="@string/singUp"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_login_wellcome"
+            style="@style/ButtonWellcome"
+            android:text="@string/login"
+            android:textAllCaps="false"/>
+    </TableRow>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="0.5"
+        android:src="@drawable/btn_facebook"/>
+</LinearLayout>

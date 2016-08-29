@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="13dp"
+        android:background="@drawable/background_button_main"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/textViewLogin"
+                android:text="@string/Email"/>
+
+            <EditText
+                android:id="@+id/edt_register_mail"
+                style="@style/EditTextLogin"
+                android:hint="@string/InputEmail"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/textViewLogin"
+                android:text="@string/Password"/>
+
+            <EditText
+                android:id="@+id/edt_register_password"
+                style="@style/EditTextLogin"
+                android:hint="@string/inputPassword"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/username"/>
+
+    <EditText
+        android:id="@+id/edt_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/birthday"/>
+
+    <RadioGroup
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rdb_gender_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/male"/>
+
+        <RadioButton
+            android:id="@+id/rdb_gender_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
+            android:text="@string/female"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_login_button"
+        android:text="@string/register"
+        android:textAllCaps="false"
+        android:textStyle="bold"/>
+</LinearLayout>

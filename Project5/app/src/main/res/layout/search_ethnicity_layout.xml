@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="60dp"
+                  android:background="@color/colorHeader"
+                  android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_cancel_search_Ethnicity"
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:background="@drawable/background_button_main2"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textHm"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtContentSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="@string/searchEthnicity"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textBm"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnDoneSearchEthnicity"
+            android:layout_width="71dp"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:background="@drawable/background_button_main2"
+            android:text="@string/done"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textHm"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_layout_setting_one"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/textSearchEthnicity"
+                android:text="@string/all"/>
+
+            <CheckBox
+                android:id="@+id/ckbAll"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+
+                style="@style/textSearchEthnicity"
+                android:text="@string/latina"/>
+
+            <CheckBox
+                android:id="@+id/ckbLatina"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+
+                style="@style/textSearchEthnicity"
+                android:text="@string/black"/>
+
+            <CheckBox
+                android:id="@+id/ckb_african"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/textSearchEthnicity"
+                android:text="@string/natives"/>
+
+            <CheckBox
+                android:id="@+id/ckb_native"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+
+                style="@style/textSearchEthnicity"
+                android:text="@string/asian"/>
+
+            <CheckBox
+                android:id="@+id/ckb_asian"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/textSearchEthnicity"
+                android:text="@string/indian"/>
+
+            <CheckBox
+                android:id="@+id/ckb_indian"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/textSearchEthnicity"
+                android:text="@string/pacific"/>
+
+            <CheckBox
+                android:id="@+id/ckb_islander"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/textSearchEthnicity"
+                android:text="@string/whiles"/>
+
+            <CheckBox
+                android:id="@+id/ckb_while"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/textSearchEthnicity"
+                android:text="@string/middke"/>
+
+            <CheckBox
+                android:id="@+id/ckb_easten"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+        <View style="@style/viewLine"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/textSearchEthnicity"
+                android:text="@string/mixed"/>
+
+            <CheckBox
+                android:id="@+id/ckb_mutil"
+                style="@style/checkBoxSearchEthnicity"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

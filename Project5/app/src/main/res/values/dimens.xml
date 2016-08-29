@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="radiusEdittext">6dp</dimen>
+    <dimen name="widthEdittext">1dp</dimen>
+    <dimen name="textSizeEmail">15sp</dimen>
+    <dimen name="radiusButton">7dp</dimen>
+    <dimen name="text13sp">13sp</dimen>
+    <dimen name="textSeventDp">7dp</dimen>
+    <dimen name="text8sp">8dp</dimen>
+    <dimen name="textHm">15sp</dimen>
+    <dimen name="textBm">20sp</dimen>
+    <dimen name="textButton">40dp</dimen>
+    <dimen name="divider">5dp</dimen>
+
+</resources>
