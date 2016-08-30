@@ -18,7 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
 
@@ -48,7 +47,7 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
     private AlertDialog.Builder alertDialog;
     private SharedPreferences sharedPreferences;
     private User user;
-    private String tokenUserSignUp;
+    private String tokenUserLogin;
     private String emailReceiveFromSignUp;
     private String passwordReceiveFromSignUp;
     private ProgressDialog dialog;
@@ -170,8 +169,6 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
         object.put(KeyParam.KeyApiDeviceType, KeyParam.Android);
         object.put(KeyParam.KeyApiLoginTime, "20160223123412");
 
-        RequestQueue queue = MySingleton.getInstance(getActivity()).
-                getRequestQueue();
         String mUrl = KeyParam.mUrl;
 
         JsonObjectRequest request = new JsonObjectRequest(mUrl, new JSONObject(object),
@@ -184,8 +181,9 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
                             resultFromServer = response.getInt("code");
                             if (resultFromServer == 0) {
                                 JSONObject reJsonObject = response.getJSONObject("data");
-                                tokenUserSignUp = reJsonObject.getString("tokenUserSignUp");
-                                listener.sendToken(tokenUserSignUp);
+                                tokenUserLogin = reJsonObject.getString("tokenUserLogin");
+                                if (tokenUserLogin != null)
+                                    listener.sendToken(tokenUserLogin);
                             }
 
                             Log.e("demo", resultFromServer + "");
@@ -202,7 +200,9 @@ public class LoginFragment extends BaseApiFragment implements View.OnClickListen
             }
         });
 
+/*
         queue.add(request);
+*/
         MySingleton.getInstance(getActivity()).addToRequestQueue(request);
     }
 

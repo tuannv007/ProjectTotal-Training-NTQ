@@ -1,10 +1,12 @@
-package fragment.base;
+package fragment.setting;
 
 import android.annotation.TargetApi;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.Button;
+
+import fragment.base.BaseApiFragment;
 
 import static com.example.admin.project1final.R.drawable.background_search_setting;
 import static com.example.admin.project1final.R.drawable.background_world;

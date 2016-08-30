@@ -16,11 +16,10 @@ import com.example.admin.project1final.R;
  * Created by admin on 7/19/2016.
  */
 public class MyDialogShowAgeSearch extends DialogFragment implements NumberPicker.OnValueChangeListener, View.OnClickListener {
-    public static final String KEY_NEWVAL_AGE_ONE = "key_newval_age_one";
-    public static final int REQUES_CODE_DIALOG_AGE = 3;
-    public static final String KEY_NEWVAL_AGE_TWO = "key_newval_age_two";
-    private NumberPicker numberPicker1, numberPicker2;
-    private Button btnCancel, btnOk;
+    public static final String KEY_NEW_VAL_AGE_ONE = "key_new_val_age_one";
+    public static final int REQUEST_CODE_DIALOG_AGE = 3;
+    public static final String KEY_NEW_VAL_AGE_TWO = "key_new_val_age_two";
+    private NumberPicker numberPickerLeft, numberPickerRight;
 
     @Nullable
     @Override
@@ -31,17 +30,17 @@ public class MyDialogShowAgeSearch extends DialogFragment implements NumberPicke
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getDialog().setTitle(R.string.offage);
-        numberPicker1 = (NumberPicker) view.findViewById(R.id.numberPicker);
-        numberPicker2 = (NumberPicker) view.findViewById(R.id.numberPicker2);
-        btnCancel = (Button) view.findViewById(R.id.btn_cancle);
-        btnOk = (Button) view.findViewById(R.id.btn_ok);
-        numberPicker1.setMaxValue(100);
-        numberPicker1.setMinValue(1);
-        numberPicker2.setMaxValue(100);
-        numberPicker2.setMinValue(1);
-        numberPicker1.setOnValueChangedListener(this);
-        numberPicker2.setOnValueChangedListener(this);
+        getDialog().setTitle(getString(R.string.offage));
+        numberPickerLeft = (NumberPicker) view.findViewById(R.id.numberPicker);
+        numberPickerRight = (NumberPicker) view.findViewById(R.id.numberPicker2);
+        Button btnCancel = (Button) view.findViewById(R.id.btn_cancle);
+        Button btnOk = (Button) view.findViewById(R.id.btn_ok);
+        numberPickerLeft.setMaxValue(100);
+        numberPickerLeft.setMinValue(1);
+        numberPickerRight.setMaxValue(100);
+        numberPickerRight.setMinValue(1);
+        numberPickerLeft.setOnValueChangedListener(this);
+        numberPickerRight.setOnValueChangedListener(this);
         btnOk.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
     }
@@ -52,8 +51,8 @@ public class MyDialogShowAgeSearch extends DialogFragment implements NumberPicke
 
     private void sendAgeToSearchSetting(int RESULT_CODE) {
         Intent intent = new Intent();
-        intent.putExtra(KEY_NEWVAL_AGE_ONE, numberPicker1.getValue() + "");
-        intent.putExtra(KEY_NEWVAL_AGE_TWO, numberPicker2.getValue() + "");
+        intent.putExtra(KEY_NEW_VAL_AGE_ONE, numberPickerLeft.getValue() + "");
+        intent.putExtra(KEY_NEW_VAL_AGE_TWO, numberPickerRight.getValue() + "");
         if (getFragmentManager() != null)
             getTargetFragment().onActivityResult(getTargetRequestCode(), RESULT_CODE, intent);
     }
@@ -62,7 +61,7 @@ public class MyDialogShowAgeSearch extends DialogFragment implements NumberPicke
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_ok:
-                sendAgeToSearchSetting(REQUES_CODE_DIALOG_AGE);
+                sendAgeToSearchSetting(REQUEST_CODE_DIALOG_AGE);
                 this.dismiss();
 
                 break;

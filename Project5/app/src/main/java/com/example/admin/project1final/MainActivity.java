@@ -20,7 +20,7 @@ import fragment.setting.SettingFragment;
 import fragment.setting.notifice.NotificationsFragment;
 import key.name.fragment.tag.NameFragment;
 
-public class MainActivity extends MyActivity implements View.OnClickListener, LoginFragment.pushToken {
+public class MainActivity extends BaseActivity implements View.OnClickListener, LoginFragment.pushToken {
     public static DrawerLayout drawerLayout;
     public static String KEY_TOKEN = "key_token";
     private String getToken;
@@ -29,21 +29,21 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Fragment activePage = checkFragment(NameFragment.loginFragment);
+        Fragment activePage = checkFragmentExist(NameFragment.loginFragment);
         initView();
         if (activePage == null) {
-            showWellCome();
+            showWellComeFragment();
         }
         hideActionbar();
     }
 
-    private void showWellCome() {
+    private void showWellComeFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.main, new WelcomeFragment(), NameFragment.wellcomeFragment).commit();
         closeNavigation();
 
     }
 
-    private Fragment checkFragment(String tag) {
+    private Fragment checkFragmentExist(String tag) {
         return getSupportFragmentManager().findFragmentByTag(tag);
     }
 
@@ -58,20 +58,20 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
             lnlSetting.setOnClickListener(this);
         }
         LinearLayout lnlNotification = (LinearLayout) findViewById(R.id.lnl_notification);
-        assert lnlNotification != null;
-        lnlNotification.setOnClickListener(this);
+        if (lnlNotification != null)
+            lnlNotification.setOnClickListener(this);
         LinearLayout lnlSearch = (LinearLayout) findViewById(R.id.lnl_search_setting);
-        assert lnlSearch != null;
-        lnlSearch.setOnClickListener(this);
+        if (lnlSearch != null)
+            lnlSearch.setOnClickListener(this);
         LinearLayout lnlProfile = (LinearLayout) findViewById(R.id.lnl_profile);
-        assert lnlProfile != null;
-        lnlProfile.setOnClickListener(this);
+        if (lnlProfile != null)
+            lnlProfile.setOnClickListener(this);
         LinearLayout lnlChat = (LinearLayout) findViewById(R.id.lnl_chat);
-        assert lnlChat != null;
-        lnlChat.setOnClickListener(this);
-        LinearLayout lnlAution = (LinearLayout) findViewById(R.id.lnl_aution);
-        assert lnlAution != null;
-        lnlAution.setOnClickListener(this);
+        if (lnlChat != null)
+            lnlChat.setOnClickListener(this);
+        LinearLayout lnlAuction = (LinearLayout) findViewById(R.id.lnl_aution);
+        if (lnlAuction != null)
+            lnlAuction.setOnClickListener(this);
         LinearLayout lnlGiveGift = (LinearLayout) findViewById(R.id.lnl_give_gift);
         if (lnlGiveGift != null) {
             lnlGiveGift.setOnClickListener(this);
@@ -88,7 +88,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.lnl_point:
-                Fragment fragmentPoint = checkFragment(NameFragment.pointFragmnet);
+                Fragment fragmentPoint = checkFragmentExist(NameFragment.pointFragmnet);
                 if (fragmentPoint == null) {
                     changeFragment(new PointFragment(), NameFragment.pointFragmnet);
                     changeFragmentOpenNavigation();
@@ -97,7 +97,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
 
                 break;
             case R.id.lnl_setting:
-                Fragment fragmentSetting = checkFragment(NameFragment.settingFragment);
+                Fragment fragmentSetting = checkFragmentExist(NameFragment.settingFragment);
                 if (fragmentSetting == null) {
                     changeFragment(new SettingFragment(), NameFragment.settingFragment);
                     changeFragmentOpenNavigation();
@@ -110,7 +110,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
                 closeNavigation();*/
 
                 //TODO project 2
-                Fragment fragmentNotification = checkFragment(NameFragment.nofiticationProject2);
+                Fragment fragmentNotification = checkFragmentExist(NameFragment.nofiticationProject2);
                 if (fragmentNotification == null) {
                     changeFragment(new NotificationsFragment(), NameFragment.notificationFragment);
                     closeNavigation();
@@ -123,7 +123,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
 
                 break;
             case R.id.lnl_search_setting:
-                Fragment fragmentSearchSetting = checkFragment(NameFragment.searchSettingFragment);
+                Fragment fragmentSearchSetting = checkFragmentExist(NameFragment.searchSettingFragment);
                 if (fragmentSearchSetting == null) {
                     SearchSettingFragment searchSettingFragment = new SearchSettingFragment();
                     Bundle bundle = new Bundle();
@@ -137,7 +137,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
 
                 break;
             case R.id.lnl_profile:
-                Fragment fragmentProfile = checkFragment(NameFragment.editProfileFragment);
+                Fragment fragmentProfile = checkFragmentExist(NameFragment.editProfileFragment);
                 if (fragmentProfile == null) {
                     changeFragment(new EditProfileFragment(), NameFragment.editProfileFragment);
                     closeNavigation();
@@ -145,7 +145,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
 
                 break;
             case R.id.lnl_chat:
-                Fragment chatFragment = checkFragment(NameFragment.chatFragment);
+                Fragment chatFragment = checkFragmentExist(NameFragment.chatFragment);
                 if (chatFragment == null) {
                     changeFragment(new ChatFragment(), NameFragment.chatFragment);
                     closeNavigation();
@@ -153,14 +153,14 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
 
                 break;
             case R.id.lnl_aution:
-                Fragment autionFragment = checkFragment(NameFragment.autionFragment);
+                Fragment autionFragment = checkFragmentExist(NameFragment.autionFragment);
                 if (autionFragment == null) {
                     changeFragment(new AuctionFragment(), NameFragment.autionFragment);
                     showActionbarAuction("Auction");
                 }
                 break;
             case R.id.lnl_give_gift:
-                Fragment giveGiftFragment = checkFragment(NameFragment.giveGiftFragment);
+                Fragment giveGiftFragment = checkFragmentExist(NameFragment.giveGiftFragment);
                 if (giveGiftFragment == null) {
                     changeFragment(new GiveGiftFragment(), NameFragment.giveGiftFragment);
                     closeNavigation();
@@ -210,31 +210,31 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
     public void onBackPressed() {
         super.onBackPressed();
 
-        Fragment activePageSetting = checkFragment(NameFragment.settingFragment);
+        Fragment activePageSetting = checkFragmentExist(NameFragment.settingFragment);
         if (activePageSetting != null) {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             return;
         }
-        Fragment autionFragment = checkFragment(NameFragment.autionFragment);
+        Fragment autionFragment = checkFragmentExist(NameFragment.autionFragment);
         if (autionFragment != null) {
             showActionbarAuction("Aution");
             getSupportFragmentManager().popBackStackImmediate(
                     new MainFragment().getClass().getName(), 0);
             return;
         }
-        Fragment searchFriendFragment = checkFragment(NameFragment.searchFriendFragment);
+        Fragment searchFriendFragment = checkFragmentExist(NameFragment.searchFriendFragment);
         if (searchFriendFragment != null) {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             showActionbarAuction("Search Friend");
             return;
         }
-        Fragment giveGiftFragment = checkFragment(NameFragment.giveGiftFragment);
+        Fragment giveGiftFragment = checkFragmentExist(NameFragment.giveGiftFragment);
         if (giveGiftFragment != null) {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             hideActionbar();
             return;
         }
-        Fragment activePageMain = checkFragment(NameFragment.mainFragmnet);
+        Fragment activePageMain = checkFragmentExist(NameFragment.mainFragmnet);
         if (activePageMain != null) {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             drawerLayout.closeDrawer(Gravity.LEFT);
@@ -243,9 +243,9 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
         }
 
 
-        Fragment activeWellcome = checkFragment(NameFragment.wellcomeFragment);
+        Fragment activeWelcome = checkFragmentExist(NameFragment.wellcomeFragment);
 
-        Fragment activeLogin = checkFragment(NameFragment.loginFragment);
+        Fragment activeLogin = checkFragmentExist(NameFragment.loginFragment);
         if (activeLogin != null) {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             showActionbarLogin();
@@ -254,7 +254,7 @@ public class MainActivity extends MyActivity implements View.OnClickListener, Lo
         }
 
 
-        if (activeWellcome != null) {
+        if (activeWelcome != null) {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             hideActionbar();
             return;

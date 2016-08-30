@@ -18,7 +18,6 @@ import com.example.admin.project1final.R;
 public class MyDialogShowRelationship extends android.support.v4.app.DialogFragment implements CompoundButton.OnCheckedChangeListener {
     public static final int RESULT_CODE = 4;
     public static final String KEY_DIALOG = "key_dialog";
-    private RadioButton rdbAskme, rdbSinger, rdbRelationship, rdbMaried, rdbComparicate, rdbOpenRelationship, rdbSeparate, rdbDivocred, rdbUnion;
     private RadioGroup group;
 
     @Nullable
@@ -31,18 +30,18 @@ public class MyDialogShowRelationship extends android.support.v4.app.DialogFragm
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rdbAskme = (RadioButton) view.findViewById(R.id.rdb_Askme);
-        rdbRelationship = (RadioButton) view.findViewById(R.id.rdb_relationship);
-        rdbMaried = (RadioButton) view.findViewById(R.id.rdb_maried);
-        rdbComparicate = (RadioButton) view.findViewById(R.id.rdb_compalicate);
-        rdbSinger = (RadioButton) view.findViewById(R.id.rdb_singer);
-        rdbOpenRelationship = (RadioButton) view.findViewById(R.id.rdb_open_relationship);
-        rdbSeparate = (RadioButton) view.findViewById(R.id.rdb_separated);
-        rdbDivocred = (RadioButton) view.findViewById(R.id.rdb_divorced);
-        rdbUnion = (RadioButton) view.findViewById(R.id.rdb_union);
-        rdbAskme.setOnCheckedChangeListener(this);
+        RadioButton rdbAskMe = (RadioButton) view.findViewById(R.id.rdb_Askme);
+        RadioButton rdbRelationship = (RadioButton) view.findViewById(R.id.rdb_relationship);
+        RadioButton rdbMarried = (RadioButton) view.findViewById(R.id.rdb_maried);
+        RadioButton rdbComparicate = (RadioButton) view.findViewById(R.id.rdb_compalicate);
+        RadioButton rdbSinger = (RadioButton) view.findViewById(R.id.rdb_singer);
+        RadioButton rdbOpenRelationship = (RadioButton) view.findViewById(R.id.rdb_open_relationship);
+        RadioButton rdbSeparate = (RadioButton) view.findViewById(R.id.rdb_separated);
+        RadioButton rdbDivocred = (RadioButton) view.findViewById(R.id.rdb_divorced);
+        RadioButton rdbUnion = (RadioButton) view.findViewById(R.id.rdb_union);
+        rdbAskMe.setOnCheckedChangeListener(this);
         rdbRelationship.setOnCheckedChangeListener(this);
-        rdbMaried.setOnCheckedChangeListener(this);
+        rdbMarried.setOnCheckedChangeListener(this);
         rdbComparicate.setOnCheckedChangeListener(this);
         rdbSinger.setOnCheckedChangeListener(this);
         rdbOpenRelationship

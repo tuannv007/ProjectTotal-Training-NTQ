@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -29,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fragment.base.ChangeBackgroundButtonStateSetting;
+import fragment.setting.ChangeBackgroundButtonStateSetting;
 import fragment.dialog.MyDialogShowAgeSearch;
 import key.api.KeyParam;
 import singleton.pattemdesign.MySingleton;
@@ -61,7 +60,8 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
     private TextView txtAge, txtRthniCity;
     private MyDialogShowAgeSearch dialogShowAgeSearch;
     private SearchEthnicityFragment searchEthnicityFragment;
-    private ArrayList<String> valueSearch = new ArrayList<>();
+    private ArrayList<String> listValuesLanguage = new ArrayList<>();
+    private ArrayList<Integer> listValuesNumberOfLanguage = new ArrayList<>();
     private NumberPicker picker;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -147,7 +147,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
             case txt_of_ethnicity:
                 searchEthnicityFragment.setTargetFragment(this, REQUES_CODE_ETHNICITY);
                 changeFragment(searchEthnicityFragment, "SearchEthnicityFragment");
-                valueSearch.clear();
+                listValuesLanguage.clear();
                 break;
             case R.id.btn_word:
                 changeBackgroundSearchSetting(btnWord, R.drawable.search_setting_btn_world_checked);
@@ -241,15 +241,15 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == MyDialogShowAgeSearch.REQUES_CODE_DIALOG_AGE) {
-            String valuesAge = data.getStringExtra(MyDialogShowAgeSearch.KEY_NEWVAL_AGE_ONE);
-            String valuesAgeTwo = data.getStringExtra(MyDialogShowAgeSearch.KEY_NEWVAL_AGE_TWO);
+        if (requestCode == MyDialogShowAgeSearch.REQUEST_CODE_DIALOG_AGE) {
+            String valuesAge = data.getStringExtra(MyDialogShowAgeSearch.KEY_NEW_VAL_AGE_ONE);
+            String valuesAgeTwo = data.getStringExtra(MyDialogShowAgeSearch.KEY_NEW_VAL_AGE_TWO);
             Log.e("nt", valuesAge + "to" + valuesAgeTwo);
             txtAge.setText(valuesAge + " and " + valuesAgeTwo);
         }
-        if (requestCode == SearchEthnicityFragment.KEY_REQUES) {
-            valueSearch = data.getStringArrayListExtra(SearchEthnicityFragment.KEYSEARCH_ETHNICITY);
-
+        if (requestCode == SearchEthnicityFragment.KEY_REQUEST) {
+            listValuesLanguage = data.getStringArrayListExtra(SearchEthnicityFragment.KEY_SEARCH_ETHNICITY);
+            listValuesNumberOfLanguage = data.getIntegerArrayListExtra(SearchEthnicityFragment.KEY_ID_LANGUAGE);
         }
 
     }
@@ -266,7 +266,7 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
     public void onResume() {
         super.onResume();
         restoreDataSharePreference();
-        check();
+        getValuesLanguage();
     }
 
     @Override
@@ -345,21 +345,21 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
         }
     }
 
-    private void check() {
-        for (int i = 0; i < valueSearch.size(); i++) {
-            String test = valueSearch.get(i).toString();
+    private void getValuesLanguage() {
+        for (int i = 0; i < listValuesLanguage.size(); i++) {
+            String test = listValuesLanguage.get(i).toString();
             txtRthniCity.setText(test);
         }
 
     }
 
-    private String getToken() {
+    private String getTokenFromUserLogin() {
         if (getArguments() == null) return "";
         else {
             return getArguments().getString(MainActivity.KEY_TOKEN);
         }
     }
-
+    // Split Age. Get age Max and Min , using push data to server
     private void splitAge() {
         String age = txtAge.getText().toString();
         if (!age.isEmpty()) {
@@ -372,55 +372,54 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
 
     }
 
-    private void getDistance() {
+    private void setDistance() {
+        int near = 0, city = 1, stage = 2, country = 3, world = 4;
         if (nameDistance.equalsIgnoreCase(isNear)) {
-            user.setNameDistance(0);
+            user.setNameDistance(near);
         } else if (nameDistance.equalsIgnoreCase(isCity)) {
-            user.setNameDistance(1);
+            user.setNameDistance(city);
         } else if (nameDistance.equalsIgnoreCase(isState)) {
-            user.setNameDistance(2);
+            user.setNameDistance(stage);
         } else if (nameDistance.equalsIgnoreCase(isCountry)) {
-            user.setNameDistance(3);
+            user.setNameDistance(country);
         } else if (nameDistance.equalsIgnoreCase(isWorld)) {
-            user.setNameDistance(4);
+            user.setNameDistance(world);
+        }
+    }
+
+    private void setShowMe() {
+        int male = 0, female = 1, both = 2;
+        if (nameShowMe.equalsIgnoreCase(isShowMe1)) {
+            user.setNameShowme(male);
+        } else if (nameShowMe.equalsIgnoreCase(isShowMe2)) {
+            user.setNameShowme(female);
+        } else if (nameShowMe.equalsIgnoreCase(isShowMe3)) {
+            user.setNameShowme(both);
         }
     }
 
     private void searchFriendBySetting() {
-        ArrayList<Integer> arrEtho = new ArrayList<>();
-        arrEtho.add(1);
-        String s = getToken();
+        String token = getTokenFromUserLogin();
         user = new User();
-        getDistance();
+        setShowMe();
+        setInterred();
+        setDistance();
         splitAge();
-        if (nameShowMe.equalsIgnoreCase(isShowMe1)) {
-            user.setNameShowme(0);
-        } else if (nameShowMe.equalsIgnoreCase(isShowMe2)) {
-            user.setNameShowme(1);
-        } else if (nameShowMe.equalsIgnoreCase(isShowMe3)) {
-            user.setNameShowme(2);
-        }
-        if (nameInterred.equalsIgnoreCase(isInterredOne)) {
-            user.setNameInterred(0);
-        } else if (nameInterred.equalsIgnoreCase(isInterredTwo))
-            user.setNameInterred(0);
-        else if (nameInterred.equalsIgnoreCase(isInterredThree))
-            user.setNameInterred(0);
+
         HashMap<String, Object> object = new HashMap<>();
         object.put(KeyParam.KeyApi, "meet_people");
-        object.put("token", s);
+        object.put("token", token);
         object.put("show_me", user.getNameShowme());
         object.put("inters_in", user.getNameInterred());
         object.put("lower_age", user.getLower_age());
         object.put("upper_age", user.getUpper_age());
-        object.put("ethn", arrEtho);
+        object.put("ethn", listValuesNumberOfLanguage);
         object.put("long", 2);
         object.put("lat", 2);
         object.put("distance", user.getNameDistance());
         object.put("skip", 1);
         object.put("take", 1);
-        RequestQueue mRequestQueue = MySingleton.getInstance(getActivity()).
-                getRequestQueue();
+
         JsonObjectRequest request = new JsonObjectRequest(KeyParam.mUrl, new JSONObject(object),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -443,8 +442,17 @@ public class SearchSettingFragment extends ChangeBackgroundButtonStateSetting im
             }
         });
 
-        mRequestQueue.add(request);
         MySingleton.getInstance(getActivity()).addToRequestQueue(request);
+    }
+
+    private void setInterred() {
+        int male = 0, female = 1, both = 2;
+        if (nameInterred.equalsIgnoreCase(isInterredOne)) {
+            user.setNameInterred(male);
+        } else if (nameInterred.equalsIgnoreCase(isInterredTwo))
+            user.setNameInterred(female);
+        else if (nameInterred.equalsIgnoreCase(isInterredThree))
+            user.setNameInterred(both);
     }
 
     private void showResultFrmServer(int values) {

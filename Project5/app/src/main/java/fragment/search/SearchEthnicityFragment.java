@@ -21,11 +21,13 @@ import fragment.base.BaseFragment;
  * Created by admin on 7/15/2016.
  */
 public class SearchEthnicityFragment extends BaseFragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
-    public static final String KEYSEARCH_ETHNICITY = "key_search_ethnicity";
-    public static final int KEY_REQUES = 1;
-    public static ArrayList<String> dataTranfer = new ArrayList<>();
+    public static final String KEY_SEARCH_ETHNICITY = "key_search_ethnicity";
+    public static final int KEY_REQUEST = 1;
+    public static final String KEY_ID_LANGUAGE = "key_id_language";
+    public static ArrayList<String> listDataLanguage = new ArrayList<>();
     private CheckBox ckbAll, ckbLatina, ckbAfrican, ckbNative, ckbAsian, ckbIndian, ckbIlander, ckbWhile, ckbEastearn, ckbMutil;
-    private Button btnDone, btnCancel;
+    private ArrayList<Integer> listNumberOfLanguage = new ArrayList<>();
+    private int idLanguage;
 
     public static SearchEthnicityFragment newInstance() {
 
@@ -50,7 +52,7 @@ public class SearchEthnicityFragment extends BaseFragment implements CompoundBut
     }
 
     private void initView(View view) {
-        btnCancel = (Button) view.findViewById(R.id.btn_cancel_search_Ethnicity);
+        Button btnCancel = (Button) view.findViewById(R.id.btn_cancel_search_Ethnicity);
         ckbAll = (CheckBox) view.findViewById(R.id.ckbAll);
         ckbLatina = (CheckBox) view.findViewById(R.id.ckbLatina);
         ckbAfrican = (CheckBox) view.findViewById(R.id.ckb_african);
@@ -61,7 +63,7 @@ public class SearchEthnicityFragment extends BaseFragment implements CompoundBut
         ckbWhile = (CheckBox) view.findViewById(R.id.ckb_while);
         ckbEastearn = (CheckBox) view.findViewById(R.id.ckb_easten);
         ckbMutil = (CheckBox) view.findViewById(R.id.ckb_mutil);
-        btnDone = (Button) view.findViewById(R.id.btnDoneSearchEthnicity);
+        Button btnDone = (Button) view.findViewById(R.id.btnDoneSearchEthnicity);
         btnDone.setOnClickListener(this);
         ckbLatina.setOnCheckedChangeListener(this);
         ckbAfrican.setOnCheckedChangeListener(this);
@@ -155,57 +157,68 @@ public class SearchEthnicityFragment extends BaseFragment implements CompoundBut
             case R.id.ckb_native:
                 if (isChecked) {
                     ckbAll.setChecked(false);
-
                 }
                 break;
         }
     }
 
-    private void sendData(int Requescode) {
-        String text = "";
+    private void sendData(int RequestCode) {
+        String language = "";
+        int idAsia = 3, idLatina = 0, idAfrican = 1, idNative = 2, idIndian = 4, idPacific = 5, idWhile = 6, idEaster = 7, idMutil = 8;
         Intent intent = new Intent();
         if (ckbAll.isChecked()) {
-            text += "All,";
-        } else {
-            text = "";
+            language += "All,";
+            listNumberOfLanguage.add(null);
         }
         if (ckbAsian.isChecked()) {
-            text += "Asian,";
+            language += "Asian,";
+            listNumberOfLanguage.add(idAsia);
         }
         if (ckbNative.isChecked()) {
-            text += "Native,";
-
+            language += "Native,";
+            listNumberOfLanguage.add(idNative);
         }
         if (ckbLatina.isChecked()) {
-            text += "Latina,";
+            language += "Latina,";
+            listNumberOfLanguage.add(idLatina);
         }
 
         if (ckbMutil.isChecked()) {
-            text += "mutil,";
+            language += "mutil,";
+            listNumberOfLanguage.add(idMutil);
         }
         if (ckbAfrican.isChecked()) {
-            text += "African,";
+            language += "African,";
+            listNumberOfLanguage.add(idAfrican);
         }
         if (ckbEastearn.isChecked()) {
-            text += "Eastearn,";
+            language += "Eastearn,";
+            listNumberOfLanguage.add(idEaster);
         }
         if (ckbIlander.isChecked()) {
-            text += "Islander,";
+            language += "Islander,";
+            listNumberOfLanguage.add(idIndian);
         }
         if (ckbWhile.isChecked()) {
-            text += "While,";
+            language += "While,";
+            listNumberOfLanguage.add(idWhile);
         }
-        dataTranfer.add(text);
-        if (dataTranfer.size() != 0)
-            intent.putStringArrayListExtra(KEYSEARCH_ETHNICITY, dataTranfer);
-        getTargetFragment().onActivityResult(getTargetRequestCode(), Requescode, intent);
+        listDataLanguage.add(language);
+        if (listDataLanguage.size() != 0) {
+            intent.putStringArrayListExtra(KEY_SEARCH_ETHNICITY, listDataLanguage);
+        }
+        if (listNumberOfLanguage.size() != 0) {
+            intent.putIntegerArrayListExtra(KEY_ID_LANGUAGE, listNumberOfLanguage);
+        }
+
+        getTargetFragment().onActivityResult(getTargetRequestCode(), RequestCode, intent);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnDoneSearchEthnicity:
-                sendData(KEY_REQUES);
+                sendData(KEY_REQUEST);
                 goBack();
                 break;
             case R.id.btn_cancel_search_Ethnicity:

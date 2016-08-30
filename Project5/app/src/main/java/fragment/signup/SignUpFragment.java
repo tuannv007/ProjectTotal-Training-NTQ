@@ -17,12 +17,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.admin.project1final.MainActivity;
 import com.example.admin.project1final.R;
 
@@ -161,8 +159,7 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
         object.put(KeyParam.KeyApiOriginalPass, user.getPassword());
         object.put(KeyParam.KeyApiGender, user.getGender());
         String mUrl = KeyParam.mUrl;
-        RequestQueue queue = MySingleton.getInstance(getActivity()).
-                getRequestQueue();
+
         JsonObjectRequest request = new JsonObjectRequest(mUrl, new JSONObject(object),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -184,7 +181,6 @@ public class SignUpFragment extends BaseApiFragment implements View.OnClickListe
                 VolleyLog.e("Error: ", error.getMessage());
             }
         });
-        queue.add(request);
         MySingleton.getInstance(getActivity()).addToRequestQueue(request);
 
     }

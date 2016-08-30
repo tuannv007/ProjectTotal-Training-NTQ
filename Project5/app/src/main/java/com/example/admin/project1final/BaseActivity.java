@@ -20,7 +20,7 @@ import key.name.fragment.tag.NameFragment;
 /**
  * Created by admin on 7/24/2016.
  */
-public abstract class MyActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     void changeFragment(Fragment myFragment, String Tag) {

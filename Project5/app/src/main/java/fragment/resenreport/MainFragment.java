@@ -29,7 +29,9 @@ public class MainFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         DrawerLayout drawerLayout = MainActivity.drawerLayout;
+        //Unlock drawerLayout
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        //Close drawerLayout
         drawerLayout.closeDrawer(Gravity.LEFT);
         ((MainActivity) getActivity()).showActionbarRecentReport();
     }
